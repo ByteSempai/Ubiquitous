@@ -1,0 +1,16 @@
+D:\projects\dotFlex4\FluorineFx\obj\Debug\ResolveAssemblyReference.cache
+D:\projects\dotFlex4\FluorineFx\obj\Debug\FluorineFx.Resources.Resource.resources
+D:\projects\dotFlex4\FluorineFx\obj\Debug\GenerateResource.read.1.tlog
+D:\projects\dotFlex4\FluorineFx\obj\Debug\GenerateResource.write.1.tlog
+D:\projects\Bin\net\4.0\FluorineFx.dll
+D:\projects\Bin\net\4.0\FluorineFx.pdb
+D:\projects\dotFlex4\FluorineFx\obj\Debug\FluorineFx.dll
+D:\projects\dotFlex4\FluorineFx\obj\Debug\FluorineFx.pdb
+C:\projects\Bin\net\4.0\FluorineFx.dll
+C:\projects\Bin\net\4.0\FluorineFx.pdb
+C:\projects\dotFlex4\FluorineFx\obj\Debug\ResolveAssemblyReference.cache
+C:\projects\dotFlex4\FluorineFx\obj\Debug\FluorineFx.Resources.Resource.resources
+C:\projects\dotFlex4\FluorineFx\obj\Debug\GenerateResource.read.1.tlog
+C:\projects\dotFlex4\FluorineFx\obj\Debug\GenerateResource.write.1.tlog
+C:\projects\dotFlex4\FluorineFx\obj\Debug\FluorineFx.dll
+C:\projects\dotFlex4\FluorineFx\obj\Debug\FluorineFx.pdb

@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D4C8BFB0-B1A6-44B3-B8A1-3D98BDC3BDF5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ubiquitous</RootNamespace>
+    <AssemblyName>Ubiquitous</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BGWorker.cs" />
+    <Compile Include="ComboBoxWithId.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ExRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings1.cs" />
+    <Compile Include="StatusImage.cs" />
+    <Compile Include="StatusServer.cs" />
+    <EmbeddedResource Include="InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dotGoodgame\dotGoodgame.csproj">
+      <Project>{6D28B843-5E95-4830-B188-8ED89A99ECC5}</Project>
+      <Name>dotGoodgame</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dotIRC\dotIRC.csproj">
+      <Project>{47D551DA-96ED-4EF6-96BF-4832059D4700}</Project>
+      <Name>dotIRC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dotSC2TV\dotSC2TV.csproj">
+      <Project>{E8F80B04-F23F-49F3-8749-781972C19FF2}</Project>
+      <Name>dotSC2TV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dotSkype\dotSkype.csproj">
+      <Project>{DD0ADA1E-4D46-476A-9F33-9C1BA3B72EB6}</Project>
+      <Name>dotSkype</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dotSteam\dotSteam.csproj">
+      <Project>{D846D108-D95B-4488-BA01-E487DA220C17}</Project>
+      <Name>dotSteam</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dotTwitchTV\dotTwitchTV.csproj">
+      <Project>{C1B0A91F-BE05-48AB-9D94-BEF81D3174A2}</Project>
+      <Name>dotTwitchTV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dotXSplit\dotXSplit\dotXSplit.csproj">
+      <Project>{75B0D174-732F-4A64-82FB-21016CD8DAA7}</Project>
+      <Name>dotXSplit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checkMarkGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checkMarkRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\streamOffline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\streamOnline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sc2icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steamicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twitchicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skypeicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\adminicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\goodgameicon.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
