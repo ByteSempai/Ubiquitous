@@ -248,7 +248,7 @@ namespace Ubiquitous
         #endregion 
 
         #region Private properties
-        private const Properties.Settings settings = Properties.Settings.Default;
+        private Properties.Settings settings = Properties.Settings.Default;
         private const string twitchIRCDomain = "jtvirc.com";
         private Log log;
         private SteamAPISession.User steamAdmin;
