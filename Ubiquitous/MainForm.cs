@@ -333,7 +333,8 @@ namespace Ubiquitous
         }
         private void comboSc2Channels_DropDown(object sender, EventArgs e)
         {
-           // sc2tv.updateStreamList();
+            if( settings.sc2tvEnabled )
+                sc2tv.updateStreamList();
         }
 
         private void comboGGChannels_DropDown(object sender, EventArgs e)
@@ -753,13 +754,10 @@ namespace Ubiquitous
             {
                 channelsSC2 = new BindingSource();
                 channelsSC2.DataSource = sc2tv.channelList.channels;
-                comboSc2Channels.SetDataSource(channelsSC2, "Title", "Id");
             }
-            else
-            {
-                channelsSC2.ResetBindings(false);
-                comboSc2Channels.Refresh();               
-            }
+            comboSc2Channels.SetDataSource(null);
+            comboSc2Channels.SetDataSource(channelsSC2, "Title", "Id");
+
         }
         private void OnSc2TvMessageReceived(object sender, Sc2Chat.Sc2MessageEvent e)
         {

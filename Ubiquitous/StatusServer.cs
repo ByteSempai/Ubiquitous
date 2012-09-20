@@ -102,11 +102,11 @@ namespace Ubiquitous
                 if( tcpClient == null )
                     return;
 
-                dataFlag.Reset();
                 try
                 {
-                    if (Connected)
+                    while(Connected)
                     {
+                        dataFlag.Reset();
                         tcpClient.Client.BeginReceive(
                                 dataRcvBuf, 0,
                                 dataRcvBuf.Length,
@@ -114,16 +114,12 @@ namespace Ubiquitous
                                 new AsyncCallback(OnBytesReceived),
                                 this
                         );
+                        dataFlag.WaitOne();
                     }
                 }
                 catch
                 {
                     Debug.Print("Receive exception");
-                }
-                finally
-                {
-                    dataFlag.WaitOne();
-                    Thread.Sleep(10);
                 }
             }
             public void Close()
@@ -151,7 +147,10 @@ namespace Ubiquitous
                 int nBytesRec = 0;
 
                 if (tcpClient == null)
+                {
+                    dataFlag.Set();
                     return;
+                }
 
                 try
                 {
@@ -163,7 +162,7 @@ namespace Ubiquitous
                         nBytesRec = tcpClient.Client.EndReceive(result);
                     }
                 catch
-                { Debug.Print("OnBYtesReceived exception"); }
+                { Debug.Print("OnBytesReceived exception"); }
 
                 if (nBytesRec <= 0)
                 {
@@ -177,15 +176,16 @@ namespace Ubiquitous
                 OnData(new SocketData(this, strReceived), EventArgs.Empty);
 
 
-                dataFlag.Set();
 
                 if (isShuttingDown)
-                {                    
+                {
                     Close();
+                    dataFlag.Set();
                     return;
                 }
 
-                ThreadPool.QueueUserWorkItem(arg => BeginReceive());
+                dataFlag.Set();
+
 
             }
     }
