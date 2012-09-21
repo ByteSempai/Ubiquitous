@@ -38,7 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureGoodgame = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureSkype = new System.Windows.Forms.PictureBox();
             this.pictureSteamBot = new System.Windows.Forms.PictureBox();
@@ -61,8 +61,10 @@
             this.comboSc2Channels = new Ubiquitous.ComboBoxWithId();
             this.comboGGChannels = new Ubiquitous.ComboBoxWithId();
             this.textMessages = new SC2TV.RTFControl.ExRichTextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.pictureBattlelog = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGoodgame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSkype)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSteamBot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSteamAdmin)).BeginInit();
@@ -72,12 +74,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureStream)).BeginInit();
             this.contextMenuChat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCurrentChat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBattlelog)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonSettings
             // 
             this.buttonSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSettings.Location = new System.Drawing.Point(669, 330);
+            this.buttonSettings.Location = new System.Drawing.Point(669, 371);
             this.buttonSettings.Name = "buttonSettings";
             this.buttonSettings.Size = new System.Drawing.Size(75, 23);
             this.buttonSettings.TabIndex = 0;
@@ -134,8 +137,10 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.pictureBattlelog);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.pictureGoodgame);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.pictureSkype);
             this.groupBox1.Controls.Add(this.pictureSteamBot);
@@ -149,7 +154,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(634, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(140, 178);
+            this.groupBox1.Size = new System.Drawing.Size(140, 218);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chat login status";
@@ -164,16 +169,16 @@
             this.label8.TabIndex = 12;
             this.label8.Text = "Goodgame";
             // 
-            // pictureBox1
+            // pictureGoodgame
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(6, 149);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
+            this.pictureGoodgame.Image = ((System.Drawing.Image)(resources.GetObject("pictureGoodgame.Image")));
+            this.pictureGoodgame.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureGoodgame.InitialImage")));
+            this.pictureGoodgame.Location = new System.Drawing.Point(6, 149);
+            this.pictureGoodgame.Name = "pictureGoodgame";
+            this.pictureGoodgame.Size = new System.Drawing.Size(20, 20);
+            this.pictureGoodgame.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureGoodgame.TabIndex = 11;
+            this.pictureGoodgame.TabStop = false;
             // 
             // label5
             // 
@@ -245,7 +250,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.pictureStream);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(634, 195);
+            this.groupBox2.Location = new System.Drawing.Point(634, 236);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(140, 129);
             this.groupBox2.TabIndex = 10;
@@ -272,7 +277,7 @@
             // 
             this.textCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textCommand.Location = new System.Drawing.Point(23, 452);
+            this.textCommand.Location = new System.Drawing.Point(23, 571);
             this.textCommand.Name = "textCommand";
             this.textCommand.Size = new System.Drawing.Size(606, 20);
             this.textCommand.TabIndex = 12;
@@ -335,7 +340,7 @@
             this.pictureCurrentChat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureCurrentChat.ContextMenuStrip = this.contextMenuChat;
             this.pictureCurrentChat.Image = global::Ubiquitous.Properties.Resources.twitchicon;
-            this.pictureCurrentChat.Location = new System.Drawing.Point(1, 452);
+            this.pictureCurrentChat.Location = new System.Drawing.Point(1, 571);
             this.pictureCurrentChat.Name = "pictureCurrentChat";
             this.pictureCurrentChat.Size = new System.Drawing.Size(16, 16);
             this.pictureCurrentChat.TabIndex = 13;
@@ -345,7 +350,7 @@
             // buttonInvisible
             // 
             this.buttonInvisible.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonInvisible.Location = new System.Drawing.Point(719, 449);
+            this.buttonInvisible.Location = new System.Drawing.Point(719, 490);
             this.buttonInvisible.Name = "buttonInvisible";
             this.buttonInvisible.Size = new System.Drawing.Size(55, 23);
             this.buttonInvisible.TabIndex = 19;
@@ -387,19 +392,40 @@
             this.textMessages.Name = "textMessages";
             this.textMessages.ReadOnly = true;
             this.textMessages.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.textMessages.Size = new System.Drawing.Size(628, 419);
+            this.textMessages.Size = new System.Drawing.Size(628, 538);
             this.textMessages.TabIndex = 11;
             this.textMessages.Text = "";
             this.textMessages.TextColor = SC2TV.RTFControl.RtfColor.Black;
             this.textMessages.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.textMessages_LinkClicked);
             this.textMessages.SizeChanged += new System.EventHandler(this.textMessages_SizeChanged);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(34, 177);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 18);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Battlelog";
+            // 
+            // pictureBattlelog
+            // 
+            this.pictureBattlelog.Image = ((System.Drawing.Image)(resources.GetObject("pictureBattlelog.Image")));
+            this.pictureBattlelog.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBattlelog.InitialImage")));
+            this.pictureBattlelog.Location = new System.Drawing.Point(6, 176);
+            this.pictureBattlelog.Name = "pictureBattlelog";
+            this.pictureBattlelog.Size = new System.Drawing.Size(20, 20);
+            this.pictureBattlelog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBattlelog.TabIndex = 13;
+            this.pictureBattlelog.TabStop = false;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.buttonInvisible;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 475);
+            this.ClientSize = new System.Drawing.Size(780, 594);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.buttonInvisible);
             this.Controls.Add(this.label6);
@@ -417,7 +443,7 @@
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGoodgame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSkype)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSteamBot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureSteamAdmin)).EndInit();
@@ -427,6 +453,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureStream)).EndInit();
             this.contextMenuChat.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureCurrentChat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBattlelog)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -462,9 +489,11 @@
         private System.Windows.Forms.Label label7;
         private Ubiquitous.ComboBoxWithId comboSc2Channels;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureGoodgame;
         private ComboBoxWithId comboGGChannels;
         private System.Windows.Forms.Button buttonInvisible;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pictureBattlelog;
     }
 }
 

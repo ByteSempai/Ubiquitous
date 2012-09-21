@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebSocket4Net", "WebSocket4Net", "{7C222DBF-12EE-4696-BD69-C8D9460CE26C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocket4Net", "..\WebSocket4Net\WebSocket4Net.csproj", "{6920447F-76B1-4739-822E-9CE3A2882718}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test2", "..\test2\test2.csproj", "{38FFF0AF-0100-4ED8-8FDC-9E2709D92C4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6920447F-76B1-4739-822E-9CE3A2882718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6920447F-76B1-4739-822E-9CE3A2882718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6920447F-76B1-4739-822E-9CE3A2882718}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6920447F-76B1-4739-822E-9CE3A2882718}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6920447F-76B1-4739-822E-9CE3A2882718}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6920447F-76B1-4739-822E-9CE3A2882718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6920447F-76B1-4739-822E-9CE3A2882718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6920447F-76B1-4739-822E-9CE3A2882718}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6920447F-76B1-4739-822E-9CE3A2882718}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6920447F-76B1-4739-822E-9CE3A2882718}.Release|x86.ActiveCfg = Release|Any CPU
+		{38FFF0AF-0100-4ED8-8FDC-9E2709D92C4E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{38FFF0AF-0100-4ED8-8FDC-9E2709D92C4E}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{38FFF0AF-0100-4ED8-8FDC-9E2709D92C4E}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{38FFF0AF-0100-4ED8-8FDC-9E2709D92C4E}.Debug|x86.ActiveCfg = Debug|x86
+		{38FFF0AF-0100-4ED8-8FDC-9E2709D92C4E}.Debug|x86.Build.0 = Debug|x86
+		{38FFF0AF-0100-4ED8-8FDC-9E2709D92C4E}.Release|Any CPU.ActiveCfg = Release|x86
+		{38FFF0AF-0100-4ED8-8FDC-9E2709D92C4E}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{38FFF0AF-0100-4ED8-8FDC-9E2709D92C4E}.Release|Mixed Platforms.Build.0 = Release|x86
+		{38FFF0AF-0100-4ED8-8FDC-9E2709D92C4E}.Release|x86.ActiveCfg = Release|x86
+		{38FFF0AF-0100-4ED8-8FDC-9E2709D92C4E}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6920447F-76B1-4739-822E-9CE3A2882718} = {7C222DBF-12EE-4696-BD69-C8D9460CE26C}
+	EndGlobalSection
+EndGlobal

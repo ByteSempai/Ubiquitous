@@ -16,7 +16,7 @@ using dotSC2TV;
 using dotSkype;
 using dotTwitchTV;
 using dotXSplit;
-
+using dotBattlelog;
 using System.Text.RegularExpressions;
 
 namespace Ubiquitous
@@ -35,6 +35,7 @@ namespace Ubiquitous
             SkypeGroup,
             Bot,
             Goodgame,
+            Battlelog,
             All
         }
         private class ChatAlias
@@ -238,6 +239,8 @@ namespace Ubiquitous
                             return ChatIcon.Admin;
                         case EndPoint.Goodgame:
                             return ChatIcon.Goodgame;
+                        case EndPoint.Battlelog:
+                            return ChatIcon.Battlelog;
                         default:
                             return ChatIcon.Default;
                     }
@@ -267,12 +270,13 @@ namespace Ubiquitous
         private BindingSource channelsSC2;
         private BindingSource channelsGG;
         private uint sc2ChannelId = 0;
-        private BGWorker steamBW, sc2BW, twitchBW, skypeBW, twitchTV, goodgameBW;
+        private BGWorker steamBW, sc2BW, twitchBW, skypeBW, twitchTV, goodgameBW, battlelogBW;
         private Twitch twitchChannel;
         private EndPoint currentChat;
         private Goodgame ggChat;
         private XSplit xsplit;
         private StatusServer statusServer;
+        private Battlelog battlelog;
         #endregion 
 
         #region Form events and methods
@@ -290,6 +294,7 @@ namespace Ubiquitous
             chatAliases.Add(new ChatAlias(settings.sc2tvChatAlias, EndPoint.Sc2Tv));
             chatAliases.Add(new ChatAlias(settings.steamChatAlias, EndPoint.Steam));
             chatAliases.Add(new ChatAlias(settings.skypeChatAlias, EndPoint.Skype));
+            chatAliases.Add(new ChatAlias(settings.battlelogChatAlias, EndPoint.Battlelog));
             chatAliases.Add(new ChatAlias("@all", EndPoint.All));
 
             sc2tv = new Sc2Chat(settings.sc2LoadHistory);
@@ -316,6 +321,7 @@ namespace Ubiquitous
             steamBot.Typing += OnSteamTyping;
 
             statusServer = new StatusServer();
+            battlelog = new Battlelog();
 
             steamBW = new BGWorker(ConnectSteamBot, null);
             sc2BW = new BGWorker(ConnectSc2tv, null);
@@ -323,10 +329,13 @@ namespace Ubiquitous
             twitchTV = new BGWorker(ConnectTwitchChannel, null);
             skypeBW = new BGWorker(ConnectSkype, null);
             goodgameBW = new BGWorker(ConnectGoodgame, null);
+            battlelogBW = new BGWorker(ConnectBattlelog, null);
 
             xsplit = new XSplit();
             xsplit.OnFrameDrops += OnXSplitFrameDrops;
             xsplit.OnStatusRefresh += OnXSplitStatusRefresh;
+
+
 
             statusServer.Start();
 
@@ -434,8 +443,8 @@ namespace Ubiquitous
             if( message == null )
                 return;            
 
-            message.Text = message.Text.Trim();
-            
+            message.Text = message.Text.Trim();           
+
             if( message.FromEndPoint != EndPoint.Console && 
                 message.FromEndPoint != EndPoint.SteamAdmin &&
                 message.FromEndPoint != EndPoint.Bot)
@@ -461,6 +470,7 @@ namespace Ubiquitous
 
                 message.ToEndPoint = currentChat;
             }
+
 
             // Send message to specified chat(s)
             switch (message.ToEndPoint)
@@ -1037,6 +1047,37 @@ namespace Ubiquitous
         {
             statusServer.Broadcast(xsplit.GetJson());
         }
+        #endregion
+
+        #region Battlelog methods and events
+
+        public void ConnectBattlelog()
+        {
+            if( settings.battlelogEnabled && 
+                !String.IsNullOrEmpty(settings.battlelogEmail) &&
+                !String.IsNullOrEmpty(settings.battlelogPassword))
+            {
+                battlelog.OnMessageReceive += OnBattlelogMessage;
+                battlelog.OnConnect += OnBattlelogConnect;
+                battlelog.Start(settings.battlelogEmail,settings.battlelogPassword);
+                
+            }
+
+        }
+        public void OnBattlelogConnect(object sender, EventArgs e)
+        {
+            checkMark.SetOn(pictureBattlelog);
+            SendMessage(new Message(String.Format("Connected to the Battlelog!"), EndPoint.Battlelog, EndPoint.Console));          
+        }
+        public void OnBattlelogMessage(object sender, BattleChatMessageArgs e)
+        {
+            if (settings.battlelogEnabled)
+            {
+                if( e.message.fromUsername != settings.battlelogNick )
+                    SendMessage(new Message(String.Format("{0} ({1})", e.message.message, e.message.fromUsername), EndPoint.Battlelog, EndPoint.SteamAdmin));                    
+            }
+        }
+
         #endregion
     }
 }

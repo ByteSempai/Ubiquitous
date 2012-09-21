@@ -17,6 +17,7 @@ namespace Ubiquitous
         Console,
         Steam,
         Admin,
+        Battlelog,
         Goodgame
     }
     /// <summary>
@@ -74,6 +75,9 @@ namespace Ubiquitous
                         break;
                     case ChatIcon.Goodgame:
                         chatIcon = Properties.Resources.goodgameicon;
+                        break;
+                    case ChatIcon.Battlelog:
+                        chatIcon = Properties.Resources.bf3icon;
                         break;
                     default:
                         chatIcon = null;
