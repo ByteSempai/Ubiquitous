@@ -324,21 +324,17 @@ namespace dotBattlelog
                 var re = new Regex( tokenRE );
 
                 var matches = re.Matches( battlelogPage );
-                if( matches.Count > 0 )
+                foreach (Match m in matches)
                 {
-                    foreach (Match m in matches)
+                    if (m.Groups.Count > 2)
                     {
-                        if (m.Groups.Count > 2)
-                        {
-                            var bs = new BattlelogSocket();
-                            bs.Connect(m.Groups[4].Value, m.Groups[3].Value, m.Groups[2].Value, m.Groups[1].Value);
-                            bs.OnMessage += OnMessage;
-                            bs.OnOpen += OnOpen;
-                            battleSockets.Add( new BattlelogSocket() );
+                        var bs = new BattlelogSocket();
+                        bs.OnMessage += OnMessage;
+                        bs.OnOpen += OnOpen;
+                        bs.Connect(m.Groups[4].Value, m.Groups[3].Value, m.Groups[2].Value, m.Groups[1].Value);
+                        battleSockets.Add( new BattlelogSocket() );
                             
-                            Debug.Print(String.Format("{0} {1} {2} {3}",bs.channel, bs.host,bs.token, bs.userid ));
-                        }
-
+                        Debug.Print(String.Format("{0} {1} {2} {3}",bs.channel, bs.host,bs.token, bs.userid ));
                     }
 
                 }

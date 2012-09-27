@@ -511,6 +511,9 @@ namespace Ubiquitous
         }
         private void SendMessageToSteamAdmin(Message message)
         {
+            if (steamAdmin == null)
+                return;
+
             if (steamBot.loginStatus == SteamAPISession.LoginStatus.LoginSuccessful)
             {
                 if (settings.skypeSkipGroupMessages && message.FromEndPoint == EndPoint.SkypeGroup)
