@@ -175,17 +175,11 @@ namespace dotSkype
             {
                 try
                 {
-                    if (skype.CurrentUserStatus == TUserStatus.cusOffline)
-                    {
-                        skype.ChangeUserStatus(TUserStatus.cusOnline);
-                        AccessForAppGranted = true;
-                    }
-                    else if (skype.CurrentUserStatus == TUserStatus.cusOnline)
-                    {
-                        AccessForAppGranted = true;
-                    }
+                    var currentStatus = skype.CurrentUserStatus;
+                    AccessForAppGranted = true;
                 }
                 catch { }
+                Thread.Sleep(10);
             }
             skype.CallStatus += OnCallStatus;
             skype.MessageStatus += OnMessageStatus;

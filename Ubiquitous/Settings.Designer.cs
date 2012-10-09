@@ -40,7 +40,6 @@
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -70,7 +69,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -83,35 +81,37 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.checkBox19 = new System.Windows.Forms.CheckBox();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.checkBox21 = new System.Windows.Forms.CheckBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -185,6 +185,7 @@
             this.buttonCancel.TabIndex = 6;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // groupBox1
             // 
@@ -239,17 +240,6 @@
             this.label11.Size = new System.Drawing.Size(53, 13);
             this.label11.TabIndex = 19;
             this.label11.Text = "Chat alias";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.ErrorImage = null;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
-            this.pictureBox3.Location = new System.Drawing.Point(9, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox3.TabIndex = 15;
-            this.pictureBox3.TabStop = false;
             // 
             // checkBox8
             // 
@@ -606,17 +596,6 @@
             this.label12.TabIndex = 21;
             this.label12.Text = "Chat alias";
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.ErrorImage = null;
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
-            this.pictureBox4.Location = new System.Drawing.Point(9, 0);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox4.TabIndex = 19;
-            this.pictureBox4.TabStop = false;
-            // 
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
@@ -767,17 +746,6 @@
             this.label13.TabIndex = 21;
             this.label13.Text = "Chat alias";
             // 
-            // pictureBox5
-            // 
-            this.pictureBox5.ErrorImage = null;
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.InitialImage")));
-            this.pictureBox5.Location = new System.Drawing.Point(9, 0);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox5.TabIndex = 19;
-            this.pictureBox5.TabStop = false;
-            // 
             // checkBox11
             // 
             this.checkBox11.AutoSize = true;
@@ -804,26 +772,6 @@
             this.checkBox12.TabIndex = 4;
             this.checkBox12.Text = "Personalized messages only";
             this.checkBox12.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(254, 10);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox2.TabIndex = 14;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(18, 10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
             // 
             // groupBox6
             // 
@@ -870,6 +818,26 @@
             this.checkBox19.TabIndex = 6;
             this.checkBox19.Text = "Show events from the feed";
             this.checkBox19.UseVisualStyleBackColor = true;
+            // 
+            // textBox19
+            // 
+            this.textBox19.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Ubiquitous.Properties.Settings.Default, "battlelogNick", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox19.Location = new System.Drawing.Point(59, 72);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(157, 20);
+            this.textBox19.TabIndex = 2;
+            this.textBox19.Text = global::Ubiquitous.Properties.Settings.Default.battlelogNick;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Location = new System.Drawing.Point(18, 75);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(32, 13);
+            this.label19.TabIndex = 21;
+            this.label19.Text = "Nick:";
             // 
             // textBox16
             // 
@@ -922,17 +890,6 @@
             this.label18.TabIndex = 21;
             this.label18.Text = "Chat alias";
             // 
-            // pictureBox6
-            // 
-            this.pictureBox6.ErrorImage = null;
-            this.pictureBox6.Image = global::Ubiquitous.Properties.Resources.bf3icon;
-            this.pictureBox6.InitialImage = null;
-            this.pictureBox6.Location = new System.Drawing.Point(9, 0);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox6.TabIndex = 19;
-            this.pictureBox6.TabStop = false;
-            // 
             // checkBox21
             // 
             this.checkBox21.AutoSize = true;
@@ -947,25 +904,69 @@
             this.checkBox21.Text = "Enabled";
             this.checkBox21.UseVisualStyleBackColor = true;
             // 
-            // label19
+            // pictureBox6
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(18, 75);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(32, 13);
-            this.label19.TabIndex = 21;
-            this.label19.Text = "Nick:";
+            this.pictureBox6.ErrorImage = null;
+            this.pictureBox6.Image = global::Ubiquitous.Properties.Resources.bf3icon;
+            this.pictureBox6.InitialImage = null;
+            this.pictureBox6.Location = new System.Drawing.Point(9, 0);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox6.TabIndex = 19;
+            this.pictureBox6.TabStop = false;
             // 
-            // textBox19
+            // pictureBox5
             // 
-            this.textBox19.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Ubiquitous.Properties.Settings.Default, "battlelogNick", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox19.Location = new System.Drawing.Point(59, 72);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(157, 20);
-            this.textBox19.TabIndex = 2;
-            this.textBox19.Text = global::Ubiquitous.Properties.Settings.Default.battlelogNick;
+            this.pictureBox5.ErrorImage = null;
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.InitialImage")));
+            this.pictureBox5.Location = new System.Drawing.Point(9, 0);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox5.TabIndex = 19;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
+            this.pictureBox2.Location = new System.Drawing.Point(254, 10);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox2.TabIndex = 14;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(18, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.ErrorImage = null;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
+            this.pictureBox4.Location = new System.Drawing.Point(9, 0);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox4.TabIndex = 19;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.ErrorImage = null;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
+            this.pictureBox3.Location = new System.Drawing.Point(9, 0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox3.TabIndex = 15;
+            this.pictureBox3.TabStop = false;
             // 
             // Settings
             // 
@@ -989,22 +990,22 @@
             this.Text = "Settings";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }

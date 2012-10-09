@@ -20,7 +20,7 @@ namespace dotBattlelog
         {
             _params.Add(new Parameter() { Name = name, Value = value });
         }
-        public string ToString()
+        public override string ToString()
         {
             return String.Join("&", _params.Select(p => String.Format("{0}={1}", p.Name, p.Value)));
         }

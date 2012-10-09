@@ -550,7 +550,7 @@ namespace Ubiquitous
         }
         private void buttonSettings_Click(object sender, EventArgs e)
         {
-            Settings settingsForm = new Settings();
+            SettingsDialog settingsForm = new SettingsDialog();
             settingsForm.ShowDialog();
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -1062,6 +1062,7 @@ namespace Ubiquitous
             {
                 battlelog.OnMessageReceive += OnBattlelogMessage;
                 battlelog.OnConnect += OnBattlelogConnect;
+                battlelog.OnUnknownJson += OnBattlelogJson;
                 battlelog.Start(settings.battlelogEmail,settings.battlelogPassword);
                 
             }
@@ -1071,6 +1072,12 @@ namespace Ubiquitous
         {
             checkMark.SetOn(pictureBattlelog);
             SendMessage(new Message(String.Format("Connected to the Battlelog!"), EndPoint.Battlelog, EndPoint.Console));          
+        }
+        public void OnBattlelogJson(object sender, StringEventArgs e)
+        {
+            if( String.IsNullOrEmpty(e.Message))
+                return;
+            SendMessage(new Message(String.Format("Unknown JSON from the Battlelog: {0}", e.Message), EndPoint.Battlelog, EndPoint.Console));
         }
         public void OnBattlelogMessage(object sender, BattleChatMessageArgs e)
         {

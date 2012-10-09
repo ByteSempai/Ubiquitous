@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Net" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -82,6 +83,12 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings1.cs" />
+    <Compile Include="SettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsDialog.Designer.cs">
+      <DependentUpon>SettingsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="StatusImage.cs" />
     <Compile Include="StatusServer.cs" />
     <EmbeddedResource Include="InputBox.resx">
@@ -102,6 +109,9 @@
     </Compile>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsDialog.resx">
+      <DependentUpon>SettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -141,6 +151,10 @@
     <ProjectReference Include="..\dotXSplit\dotXSplit\dotXSplit.csproj">
       <Project>{75B0D174-732F-4A64-82FB-21016CD8DAA7}</Project>
       <Name>dotXSplit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mycontrol\mycontrol\mycontrol.csproj">
+      <Project>{3E26D5F2-9EFF-4F76-9711-79E611F61ACB}</Project>
+      <Name>mycontrol</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

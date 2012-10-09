@@ -93,24 +93,5 @@ namespace dotBattlelog
         #endregion
     }
 
-    public static class JScriptEvaluator2
-    {
-
-        public static Microsoft.JScript.Vsa.VsaEngine Engine = Microsoft.JScript.Vsa.VsaEngine.CreateEngine();
-
-        public static object EvalJScript(string JScript)
-        {
-            object Result = null;
-            try
-            {
-                Result = Microsoft.JScript.Eval.JScriptEvaluate(JScript, Engine);
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-
-            return Result;
-        }
-    }
+   
 }
