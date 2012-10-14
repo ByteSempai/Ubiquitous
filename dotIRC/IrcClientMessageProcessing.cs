@@ -615,6 +615,8 @@ namespace dotIRC
             // Extract network information from text.
             Debug.Assert(message.Parameters[1] != null);
             var infoParts = message.Parameters[1].Split(' ');
+            if (infoParts.Length != 7)
+                return;
             Debug.Assert(infoParts.Length == 7);
             this.networkInformation.ServerClientsCount = int.Parse(infoParts[2]);
             this.networkInformation.ServerServersCount = int.Parse(infoParts[5]);
@@ -1157,7 +1159,7 @@ namespace dotIRC
         [MessageProcessor("400-599")]
         protected void ProcessMessageNumericError(IrcMessage message)
         {
-            Debug.Assert(message.Parameters[0] == this.localUser.NickName);
+            //Debug.Assert(message.Parameters[0] == this.localUser.NickName);
 
             // Extract error parameters and message text from message parameters.
             Debug.Assert(message.Parameters[1] != null);

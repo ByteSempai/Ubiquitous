@@ -318,11 +318,15 @@ namespace dotBattlelog
                     case "NotificationEventUserCameOnline":
                         var headerStatus = ParseJson<Header<User>>.ReadObject(e.Message);
                         var onlineStatus = headerStatus.data.data;
+                        if (onlineStatus == null)
+                            break;
                         Debug.Print(String.Format("Notification: {0} {1} {2} {3}", onlineStatus.username, onlineStatus.userId, onlineStatus.gravatarMd5, onlineStatus.createdAt));
                         break;
                     case "ChatMessageIncoming":
                         var headerMessage = ParseJson<Header<BattleChatMessage>>.ReadObject(e.Message);
                         var chatMessage = headerMessage.data.data;
+                        if (chatMessage == null)
+                            break;
                         Debug.Print(String.Format("Chat message: {1} {0}:{2}", chatMessage.fromUsername, chatMessage.timestamp, chatMessage.message));
                         if (m_Message == null)
                             return;
@@ -331,23 +335,39 @@ namespace dotBattlelog
                     case "UserPresenceChanged":
                         var headerPresence = ParseJson<Header<Presence>>.ReadObject(e.Message);
                         var player = headerPresence.data.data;
+                        if (player == null)
+                            break;
                         Debug.Print(String.Format("User presence: {0} {1} {2} {3}",player.userId, player.isOnline, player.isPlaying, player.isOnlineOrbit));
                         break;
                     case "FeedEventCreated":
                         var headerFeed = ParseJson<Header<FeedEvent>>.ReadObject(e.Message);
                         var feedevent = headerFeed.data.data;
+                        if (feedevent == null)
+                            break;
+
+                        if (feedevent.wroteForumPost == null)
+                            break;
                         Debug.Print(String.Format("FeedEvent: {0}",feedevent.wroteForumPost.postBody));
                         break;
                     case "MatchmakeSuccessful":
                         var headerMatchmake = ParseJson<Header<Matchmake>>.ReadObject(e.Message);
                         var matchmake = headerMatchmake.data.data;
+                        if (matchmake == null)
+                            break;
+
                         var gameServer = matchmake.gameServer;
+                        if (gameServer == null)
+                            break;
                         Debug.Print(String.Format("Matchmake: {0} {1}",matchmake.gameServer.name, matchmake.gameServer.map));
                         break;
                     case "NotificationEventUserStartedPlaying":
                         var headerPlayStart = ParseJson<Header<User>>.ReadObject(e.Message);
                         var user = headerPlayStart.data.data;
+                        if (user == null)
+                            break;
                         var presence = user.presence;
+                        if (presence == null)
+                            break;
                         Debug.Print(String.Format("Play start: {0} {1}",user.username, presence.serverName));
                         break;
                     case "BattlereportUpdateRead":

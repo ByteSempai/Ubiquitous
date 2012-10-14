@@ -502,5 +502,101 @@ namespace Ubiquitous.Properties {
                 this["battlelogNick"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@gtv")]
+        public string gohaChatAlias {
+            get {
+                return ((string)(this["gohaChatAlias"]));
+            }
+            set {
+                this["gohaChatAlias"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GohaUser {
+            get {
+                return ((string)(this["GohaUser"]));
+            }
+            set {
+                this["GohaUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GohaPassword {
+            get {
+                return ((string)(this["GohaPassword"]));
+            }
+            set {
+                this["GohaPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gohaSendStatus {
+            get {
+                return ((bool)(this["gohaSendStatus"]));
+            }
+            set {
+                this["gohaSendStatus"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gohaPersonalizedOnly {
+            get {
+                return ((bool)(this["gohaPersonalizedOnly"]));
+            }
+            set {
+                this["gohaPersonalizedOnly"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gohaLeaveJoinMessages {
+            get {
+                return ((bool)(this["gohaLeaveJoinMessages"]));
+            }
+            set {
+                this["gohaLeaveJoinMessages"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gohaEnabled {
+            get {
+                return ((bool)(this["gohaEnabled"]));
+            }
+            set {
+                this["gohaEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GohaIRCChannel {
+            get {
+                return ((string)(this["GohaIRCChannel"]));
+            }
+            set {
+                this["GohaIRCChannel"] = value;
+            }
+        }
     }
 }

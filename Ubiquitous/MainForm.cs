@@ -36,6 +36,7 @@ namespace Ubiquitous
             Bot,
             Goodgame,
             Battlelog,
+            Gohatv,
             All
         }
         private class ChatAlias
@@ -253,6 +254,7 @@ namespace Ubiquitous
         #region Private properties
         private Properties.Settings settings = Properties.Settings.Default;
         private const string twitchIRCDomain = "jtvirc.com";
+        private const string gohaIRCDomain = "i.gohanet.ru";
         private Log log;
         private SteamAPISession.User steamAdmin;
         private List<SteamAPISession.Update> updateList;
@@ -262,6 +264,7 @@ namespace Ubiquitous
         private StatusImage streamStatus;
         private Sc2Chat sc2tv;
         private IrcClient twitchIrc;
+        private IrcClient gohaIrc;
         private SkypeChat skype;
         private List<AdminCommand> adminCommands;
         private List<ChatAlias> chatAliases;
@@ -270,7 +273,7 @@ namespace Ubiquitous
         private BindingSource channelsSC2;
         private BindingSource channelsGG;
         private uint sc2ChannelId = 0;
-        private BGWorker steamBW, sc2BW, twitchBW, skypeBW, twitchTV, goodgameBW, battlelogBW;
+        private BGWorker gohaBW, steamBW, sc2BW, twitchBW, skypeBW, twitchTV, goodgameBW, battlelogBW;
         private Twitch twitchChannel;
         private EndPoint currentChat;
         private Goodgame ggChat;
@@ -295,6 +298,7 @@ namespace Ubiquitous
             chatAliases.Add(new ChatAlias(settings.steamChatAlias, EndPoint.Steam));
             chatAliases.Add(new ChatAlias(settings.skypeChatAlias, EndPoint.Skype));
             chatAliases.Add(new ChatAlias(settings.battlelogChatAlias, EndPoint.Battlelog));
+            chatAliases.Add(new ChatAlias(settings.gohaChatAlias, EndPoint.Gohatv));
             chatAliases.Add(new ChatAlias("@all", EndPoint.All));
 
             sc2tv = new Sc2Chat(settings.sc2LoadHistory);
@@ -308,6 +312,11 @@ namespace Ubiquitous
             twitchIrc.Connected += OnTwitchConnect;
             twitchIrc.Registered += OnTwitchRegister;
             twitchIrc.Disconnected += OnTwitchDisconnect;
+
+            gohaIrc = new IrcClient();
+            gohaIrc.Connected += OnGohaConnect;
+            gohaIrc.Registered += OnGohaRegister;
+            gohaIrc.Disconnected += OnGohaDisconnect;
 
             log = new Log(textMessages);
 
@@ -326,6 +335,7 @@ namespace Ubiquitous
             steamBW = new BGWorker(ConnectSteamBot, null);
             sc2BW = new BGWorker(ConnectSc2tv, null);
             twitchBW = new BGWorker(ConnectTwitchIRC, null);
+            gohaBW = new BGWorker(ConnectGohaIRC, null);
             twitchTV = new BGWorker(ConnectTwitchChannel, null);
             skypeBW = new BGWorker(ConnectSkype, null);
             goodgameBW = new BGWorker(ConnectGoodgame, null);
@@ -395,7 +405,7 @@ namespace Ubiquitous
                 }
                 else
                 {
-
+                    currentChat = chatAlias.Endpoint;
                 }
             }
             else if (currentChat != lastMessageSent.FromEndPoint)
@@ -415,7 +425,7 @@ namespace Ubiquitous
             }
 
             SendMessage(new Message(
-                String.Format("Replying to {0}...", lastMessageSent.FromEndPoint.ToString()),
+                String.Format("Replying to {0}...", currentChat.ToString()),
                 EndPoint.Bot, EndPoint.SteamAdmin)
             );
 
@@ -477,6 +487,7 @@ namespace Ubiquitous
             {
                 case EndPoint.All:
                     {
+                        SendMessageToGohaIRC(message);
                         SendMessageToTwitchIRC(message);
                         SendMessageToSc2Tv(message);
                     }
@@ -495,6 +506,9 @@ namespace Ubiquitous
                     break;
                 case EndPoint.TwitchTV:
                     SendMessageToTwitchIRC(message);
+                    break;
+                case EndPoint.Gohatv:
+                    SendMessageToGohaIRC(message);
                     break;
             }
             if (!isFlood(message))
@@ -527,12 +541,24 @@ namespace Ubiquitous
         private void SendMessageToTwitchIRC(Message message)
         {
             if (settings.twitchEnabled &&
-                twitchIrc.IsRegistered && 
-                ( message.FromEndPoint == EndPoint.Console || message.FromEndPoint == EndPoint.SteamAdmin))
+                twitchIrc.IsRegistered &&
+                (message.FromEndPoint == EndPoint.Console || message.FromEndPoint == EndPoint.SteamAdmin))
             {
                 var channelName = "#" + settings.TwitchUser;
                 var twitchChannel = twitchIrc.Channels.SingleOrDefault(c => c.Name == channelName);
                 twitchIrc.LocalUser.SendMessage(twitchChannel, message.Text);
+            }
+
+        }
+        private void SendMessageToGohaIRC(Message message)
+        {
+            if (settings.gohaEnabled &&
+                gohaIrc.IsRegistered &&
+                (message.FromEndPoint == EndPoint.Console || message.FromEndPoint == EndPoint.SteamAdmin))
+            {
+                var channelName = "#" + settings.GohaIRCChannel;
+                var gohaChannel = gohaIrc.Channels.SingleOrDefault(c => c.Name == channelName);
+                gohaIrc.LocalUser.SendMessage(gohaChannel, message.Text);
             }
 
         }
@@ -565,9 +591,18 @@ namespace Ubiquitous
                     }
                 }
 
+                if (gohaIrc != null)
+                {
+                    if (gohaIrc.IsRegistered)
+                    {
+                        gohaIrc.Quit(1000, "Bye!");
+                    }
+                }
+
                 steamBW.Stop();
                 sc2BW.Stop();
                 twitchBW.Stop();
+                gohaBW.Stop();
                 twitchTV.Stop();
                 skypeBW.Stop();
                 goodgameBW.Stop();
@@ -654,7 +689,7 @@ namespace Ubiquitous
                     UserName = settings.TwitchUser,
                     RealName = "Twitch bot of " + settings.TwitchUser,
                     Password = settings.TwitchPassword
-                });
+                });               
                 if (!connectedEvent.Wait(10000))
                 {
                     SendMessage(new Message("Twitch: connection timeout!", EndPoint.TwitchTV, EndPoint.SteamAdmin));
@@ -692,11 +727,11 @@ namespace Ubiquitous
         }
         private void OnTwitchMessageReceivedLocal(object sender, IrcMessageEventArgs e)
         {
-            SendMessage(new Message(String.Format("{1} ({0})", e.Source, e.Text), EndPoint.TwitchTV, EndPoint.SteamAdmin));
+            SendMessage(new Message(String.Format("{1} ({0}{2})", e.Source, e.Text, "@twitch.tv"), EndPoint.TwitchTV, EndPoint.SteamAdmin));
         }
         private void OnTwitchNoticeReceivedLocal(object sender, IrcMessageEventArgs e)
         {
-            SendMessage(new Message(String.Format("{1} ({0})", e.Source, e.Text), EndPoint.TwitchTV, EndPoint.SteamAdmin));
+            SendMessage(new Message(String.Format("{1} ({0}{2})", e.Source, e.Text, "@twitch.tv"), EndPoint.TwitchTV, EndPoint.SteamAdmin));
         }
         private void OnTwitchChannelJoin(object sender, IrcChannelUserEventArgs e)
         {
@@ -706,17 +741,17 @@ namespace Ubiquitous
         private void OnTwitchChannelLeft(object sender, IrcChannelUserEventArgs e)
         {
             if( settings.twitchLeaveJoinMessages )
-                SendMessage(new Message(String.Format("{0} left " + settings.twitchChatAlias, e.ChannelUser.User.NickName), EndPoint.TwitchTV, EndPoint.SteamAdmin));
+                SendMessage(new Message(String.Format("{1}{0} left ", settings.twitchChatAlias, e.ChannelUser.User.NickName), EndPoint.TwitchTV, EndPoint.SteamAdmin));
         }
         private void OnTwitchMessageReceived(object sender, IrcMessageEventArgs e)
         {
-            var m = new Message(String.Format("{1} ({0})", e.Source, e.Text), EndPoint.TwitchTV, EndPoint.SteamAdmin);
+            var m = new Message(String.Format("{1} ({0}{2})", e.Source, e.Text, "@twitch.tv"), EndPoint.TwitchTV, EndPoint.SteamAdmin);
             
             SendMessage(m);
         }
         private void OnTwitchNoticeReceived(object sender, IrcMessageEventArgs e)
         {
-            var m = new Message(String.Format("{1} ({0})", e.Source, e.Text), EndPoint.TwitchTV, EndPoint.SteamAdmin);
+            var m = new Message(String.Format("{1} ({0}{2})", e.Source, e.Text, "@twitch.tv"), EndPoint.TwitchTV, EndPoint.SteamAdmin);
             SendMessage(m);
         }
         private void OnTwitchRegister(object sender, EventArgs e)
@@ -1089,5 +1124,105 @@ namespace Ubiquitous
         }
 
         #endregion
+
+        #region Goha.tv methods and events
+        private void ConnectGohaIRC()
+        {
+            //gohaIrc.FloodPreventer = new IrcStandardFloodPreventer(4, 1000);
+            if (settings.GohaUser.Length <= 0 ||
+                !settings.gohaEnabled)
+                return;
+
+            using (var connectedEvent = new ManualResetEventSlim(false))
+            {
+                gohaIrc.Connected += (sender2, e2) => connectedEvent.Set();
+                gohaIrc.Connect(gohaIRCDomain, false, new IrcUserRegistrationInfo()
+                {
+                    NickName = settings.GohaUser,
+                    UserName = settings.GohaUser,
+                    RealName = "Goha bot of " + settings.GohaUser,
+                    //Password = settings.GohaPassword
+                });
+
+                if (!connectedEvent.Wait(10000))
+                {
+                    SendMessage(new Message("Goha: connection timeout!", EndPoint.Gohatv, EndPoint.SteamAdmin));
+                    return;
+                }
+
+            }
+        }
+        private void OnGohaDisconnect(object sender, EventArgs e)
+        {
+            if (!settings.gohaEnabled)
+                return;
+
+            gohaIrc.Quit();
+        }
+        private void OnGohaConnect(object sender, EventArgs e)
+        {
+            SendMessage( new Message(String.Format("Goha: joining to the channel"),EndPoint.Gohatv, EndPoint.SteamAdmin));
+        }
+        private void OnGohaChannelList(object sender, IrcChannelListReceivedEventArgs e)
+        {
+
+        }
+        private void OnGohaChannelJoinLocal(object sender, IrcChannelEventArgs e)
+        {
+            e.Channel.MessageReceived += OnGohaMessageReceived;
+            e.Channel.UserJoined += OnGohaChannelJoin;
+            e.Channel.UserLeft += OnGohaChannelLeft;
+            SendMessage(new Message(String.Format("Goha: bot joined!"), EndPoint.Gohatv, EndPoint.SteamAdmin));
+
+            //gohaIrc.SendRawMessage("NICK " + settings.GohaUser);
+            checkMark.SetOn(pictureGoha);
+            gohaIrc.LocalUser.SendMessage("NickServ", String.Format("IDENTIFY {0}", settings.GohaPassword));
+  
+        }
+        private void OnGohaChannelLeftLocal(object sender, IrcChannelEventArgs e)
+        {
+            SendMessage(new Message(String.Format("Goha: bot left!"), EndPoint.Gohatv,
+                EndPoint.SteamAdmin));
+        }
+        private void OnGohaMessageReceivedLocal(object sender, IrcMessageEventArgs e)
+        {
+            SendMessage(new Message(String.Format("{1} ({0}{2})", e.Source, e.Text, "@goha.tv"), EndPoint.Gohatv, EndPoint.SteamAdmin));
+        }
+        private void OnGohaNoticeReceivedLocal(object sender, IrcMessageEventArgs e)
+        {
+            SendMessage(new Message(String.Format("{1} ({0}{2})", e.Source, e.Text, "@goha.tv"), EndPoint.Gohatv, EndPoint.SteamAdmin));
+        }
+        private void OnGohaChannelJoin(object sender, IrcChannelUserEventArgs e)
+        {
+            if (settings.gohaLeaveJoinMessages)
+                SendMessage(new Message(String.Format("{1}{0} joined ",settings.gohaChatAlias, e.ChannelUser.User.NickName), EndPoint.Gohatv, EndPoint.SteamAdmin));
+        }
+        private void OnGohaChannelLeft(object sender, IrcChannelUserEventArgs e)
+        {
+            if (settings.gohaLeaveJoinMessages)
+                SendMessage(new Message(String.Format("{1}{0} left ", settings.gohaChatAlias, e.ChannelUser.User.NickName), EndPoint.Gohatv, EndPoint.SteamAdmin));
+        }
+        private void OnGohaMessageReceived(object sender, IrcMessageEventArgs e)
+        {
+            var m = new Message(String.Format("{1} ({0}{2})", e.Source, e.Text, "@goha.tv"), EndPoint.Gohatv, EndPoint.SteamAdmin);
+
+            SendMessage(m);
+        }
+        private void OnGohaNoticeReceived(object sender, IrcMessageEventArgs e)
+        {
+            var m = new Message(String.Format("{1} ({0})", e.Source, e.Text), EndPoint.Gohatv, EndPoint.SteamAdmin);
+            SendMessage(m);
+        }
+        private void OnGohaRegister(object sender, EventArgs e)
+        {
+            gohaIrc.Channels.Join("#" + settings.GohaIRCChannel);
+
+            gohaIrc.LocalUser.NoticeReceived += OnGohaNoticeReceivedLocal;
+            gohaIrc.LocalUser.MessageReceived += OnGohaMessageReceivedLocal;
+            gohaIrc.LocalUser.JoinedChannel += OnGohaChannelJoinLocal;
+            gohaIrc.LocalUser.LeftChannel += OnGohaChannelLeftLocal;
+        }    
+        #endregion
+
     }
 }
