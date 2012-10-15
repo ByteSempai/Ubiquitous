@@ -130,6 +130,12 @@
   <data name="checkMarkRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\checkMarkRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="fullscreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fullscreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fullscreen_exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fullscreen_exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="goodgameicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\goodgameicon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

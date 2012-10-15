@@ -1043,7 +1043,7 @@ namespace Ubiquitous
         }
         public void OnGGConnect(object sender, EventArgs e)
         {
-            
+            checkMark.SetOn(pictureGoodgame);
         }
         public void OnGGChannelListReceived(object sender, EventArgs e)
         {
@@ -1223,6 +1223,20 @@ namespace Ubiquitous
             gohaIrc.LocalUser.LeftChannel += OnGohaChannelLeftLocal;
         }    
         #endregion
+
+        private void buttonFullscreen_Click(object sender, EventArgs e)
+        {
+            if (buttonFullscreen.ImageIndex == 0)
+            {
+                buttonFullscreen.ImageIndex = 1;
+                textMessages.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                buttonFullscreen.ImageIndex = 0;
+                textMessages.Dock = DockStyle.None;
+            }
+        }
 
     }
 }
