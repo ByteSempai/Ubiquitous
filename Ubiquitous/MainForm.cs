@@ -339,7 +339,7 @@ namespace Ubiquitous
             twitchTV = new BGWorker(ConnectTwitchChannel, null);
             skypeBW = new BGWorker(ConnectSkype, null);
             goodgameBW = new BGWorker(ConnectGoodgame, null);
-            battlelogBW = new BGWorker(ConnectBattlelog, null);
+            //battlelogBW = new BGWorker(ConnectBattlelog, null);
 
             xsplit = new XSplit();
             xsplit.OnFrameDrops += OnXSplitFrameDrops;
@@ -349,6 +349,25 @@ namespace Ubiquitous
 
             statusServer.Start();
 
+        }
+        private void buttonFullscreen_Click(object sender, EventArgs e)
+        {
+            if (buttonFullscreen.ImageIndex == 0)
+            {
+                buttonFullscreen.ImageIndex = 1;
+                textMessages.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                buttonFullscreen.ImageIndex = 0;
+                textMessages.Dock = DockStyle.None;
+            }
+        }
+
+        private void buttonSettings_Click_1(object sender, EventArgs e)
+        {
+            SettingsDialog settingsForm = new SettingsDialog();
+            settingsForm.ShowDialog();
         }
         private void comboSc2Channels_DropDown(object sender, EventArgs e)
         {
@@ -562,32 +581,22 @@ namespace Ubiquitous
             }
 
         }
-        private void textCommand_KeyDown(object sender, KeyEventArgs e)
-        {
 
-        }
         private void pictureCurrentChat_Click(object sender, EventArgs e)
         {
             pictureCurrentChat.ContextMenuStrip.Show();
-        }
-        private void MainForm_Shown(object sender, EventArgs e)
-        {
-
-        }
-        private void buttonSettings_Click(object sender, EventArgs e)
-        {
-            SettingsDialog settingsForm = new SettingsDialog();
-            settingsForm.ShowDialog();
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
+
                 if (twitchIrc != null)
                 {
                     if (twitchIrc.IsRegistered)
                     {
                         twitchIrc.Quit(1000, "Bye!");
+                        twitchBW.Stop();
                     }
                 }
 
@@ -596,16 +605,18 @@ namespace Ubiquitous
                     if (gohaIrc.IsRegistered)
                     {
                         gohaIrc.Quit(1000, "Bye!");
+                        gohaBW.Stop();
                     }
                 }
 
+                ggChat.Disconnect();
                 steamBW.Stop();
                 sc2BW.Stop();
                 twitchBW.Stop();
-                gohaBW.Stop();
                 twitchTV.Stop();
                 skypeBW.Stop();
                 goodgameBW.Stop();
+
             }
             catch
             {
@@ -1035,6 +1046,7 @@ namespace Ubiquitous
             if (ggChat != null)
                 ggChat.Disconnect();
             ggChat = new Goodgame(settings.goodgameUser, settings.goodgamePassword, settings.goodgameLoadHistory);
+
             ggChat.OnMessageReceived += OnGGMessageReceived;
             ggChat.OnConnect += OnGGConnect;
             ggChat.OnChannelListReceived += OnGGChannelListReceived;
@@ -1051,6 +1063,8 @@ namespace Ubiquitous
             {
                 channelsGG = new BindingSource();
                 channelsGG.DataSource = ggChat.Channels;
+                if( ggChat.Channels.Count > 0 )
+                    ggChat.ChatId = ggChat.Channels[0].Id.ToString();
             }
             comboGGChannels.SetDataSource(null);
             comboGGChannels.SetDataSource(channelsGG, "TitleAndViewers", "Id");
@@ -1224,19 +1238,7 @@ namespace Ubiquitous
         }    
         #endregion
 
-        private void buttonFullscreen_Click(object sender, EventArgs e)
-        {
-            if (buttonFullscreen.ImageIndex == 0)
-            {
-                buttonFullscreen.ImageIndex = 1;
-                textMessages.Dock = DockStyle.Fill;
-            }
-            else
-            {
-                buttonFullscreen.ImageIndex = 0;
-                textMessages.Dock = DockStyle.None;
-            }
-        }
+
 
     }
 }

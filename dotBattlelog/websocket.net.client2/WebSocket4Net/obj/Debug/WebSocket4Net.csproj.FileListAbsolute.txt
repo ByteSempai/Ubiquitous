@@ -8,3 +8,8 @@ D:\Ubiquitous\dotBattlelog\websocket.net.client2\bin\net40\Debug\WebSocket4Net.p
 D:\Ubiquitous\dotBattlelog\websocket.net.client2\WebSocket4Net\obj\Debug\ResolveAssemblyReference.cache
 D:\Ubiquitous\dotBattlelog\websocket.net.client2\WebSocket4Net\obj\Debug\WebSocket4Net.dll
 D:\Ubiquitous\dotBattlelog\websocket.net.client2\WebSocket4Net\obj\Debug\WebSocket4Net.pdb
+C:\Ubiquitous\dotBattlelog\websocket.net.client2\bin\net40\Debug\WebSocket4Net.dll
+C:\Ubiquitous\dotBattlelog\websocket.net.client2\bin\net40\Debug\WebSocket4Net.pdb
+C:\Ubiquitous\dotBattlelog\websocket.net.client2\WebSocket4Net\obj\Debug\ResolveAssemblyReference.cache
+C:\Ubiquitous\dotBattlelog\websocket.net.client2\WebSocket4Net\obj\Debug\WebSocket4Net.dll
+C:\Ubiquitous\dotBattlelog\websocket.net.client2\WebSocket4Net\obj\Debug\WebSocket4Net.pdb
