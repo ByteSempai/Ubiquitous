@@ -58,7 +58,7 @@ namespace mycontrol
         {
             get { return splitContainer.Panel2; }
         }
-        [Browsable(false)]
+        [Browsable(true)]
         public List<TreeNode> Nodes
         {
             get { return Pages.Select(p => p.ParentNode).ToList(); }

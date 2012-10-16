@@ -62,7 +62,7 @@
     <Compile Include="InputBox.Designer.cs">
       <DependentUpon>InputBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Log.cs" />
+    <Compile Include="Resources\Log.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,13 +76,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Settings.Designer.cs">
-      <DependentUpon>Settings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Settings1.cs" />
     <Compile Include="SettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,9 +101,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Settings.resx">
-      <DependentUpon>Settings.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SettingsDialog.resx">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,6 +114,10 @@
     <ProjectReference Include="..\dotBattlelog\dotBattlelog.csproj">
       <Project>{AC4CCB95-2F7F-44BE-BCA8-6516EDA2FC38}</Project>
       <Name>dotBattlelog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dotGohaTV\dotGohaTV.csproj">
+      <Project>{F716F52E-E9B4-4B0F-A526-70CEEB7E1F59}</Project>
+      <Name>dotGohaTV</Name>
     </ProjectReference>
     <ProjectReference Include="..\dotGoodgame\dotGoodgame.csproj">
       <Project>{6D28B843-5E95-4830-B188-8ED89A99ECC5}</Project>

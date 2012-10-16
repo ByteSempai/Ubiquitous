@@ -233,7 +233,8 @@ namespace dotGoodgame
             }
             public void msgFromSrvr(ASObject msg)
             {
-                MessageEvent(MessageReceived, new GGMessageEventArgs(new GGChatMessage(msg)));
+                if( MessageReceived != null )
+                    MessageEvent(MessageReceived, new GGMessageEventArgs(new GGChatMessage(msg)));
             }
         }
 
@@ -282,8 +283,9 @@ namespace dotGoodgame
             if( _loadHistory )
                 _netConnection.Call("getHistory", new Responder<object[]>(addHistory), 0);
             _sharedObject.Connect(_netConnection);
-
-            DefaultEvent(OnConnect, new EventArgs());
+            
+            if( OnConnect != null )
+                DefaultEvent(OnConnect, new EventArgs());
         }
         void _netConnection_NetStatus(object sender, NetStatusEventArgs e)
         {
@@ -299,7 +301,8 @@ namespace dotGoodgame
             {
                 if (e.Info.ContainsKey("description"))
                 {
-                    ErrorEvent(OnError, new TextEventArgs(String.Format("Goodgame error: {0}", e.Info["description"].ToString())));
+                    if( OnError != null )
+                        ErrorEvent(OnError, new TextEventArgs(String.Format("Goodgame error: {0}", e.Info["description"].ToString())));
                 }
             }
             if (level == "status")
@@ -309,7 +312,8 @@ namespace dotGoodgame
         }
         void _netConnection_OnDisconnect(object sender, EventArgs e)
         {
-            DefaultEvent(OnDisconnect, new EventArgs());
+            if( OnDisconnect != null )
+                DefaultEvent(OnDisconnect, new EventArgs());
         }
         #endregion
 
@@ -356,14 +360,16 @@ namespace dotGoodgame
                 }
                 catch { }
             }
-            DefaultEvent(OnChannelListReceived, new EventArgs());
+            if( OnChannelListReceived != null )
+                DefaultEvent(OnChannelListReceived, new EventArgs());
         }
         public void addHistory(object[] history)
         {
             foreach (var a in history)
             {
                 GGChatMessage msg = new GGChatMessage( (ASObject)a );
-                MessageEvent(OnMessageReceived, new GGMessageEventArgs(msg));
+                if( OnMessageReceived != null )
+                    MessageEvent(OnMessageReceived, new GGMessageEventArgs(msg));
             }
         }
         private void ClearEvents()
@@ -376,15 +382,15 @@ namespace dotGoodgame
         }
         public void Connect(string chatId)
         {
+            
             _chatId = chatId;
 
             _netConnection = new NetConnection();
             _netConnection.ObjectEncoding = ObjectEncoding.AMF0;
-            _netConnection.OnConnect += new ConnectHandler(_netConnection_OnConnect);
-            _netConnection.NetStatus += new NetStatusHandler(_netConnection_NetStatus);
+            _netConnection.OnConnect += _netConnection_OnConnect;
+            _netConnection.NetStatus += _netConnection_NetStatus;
             _netConnection.Client = this;
             _netConnection.Connect(_chatUrl, _userId, _userToken, _chatId);
-
             _sharedObject = (GGChat)RemoteSharedObject.GetRemote(typeof(GGChat), "chat" + _chatId, _chatUrl, true);
             _sharedObject.ClearEvents();
             _sharedObject.MessageReceived += OnMessageReceived;
@@ -413,12 +419,26 @@ namespace dotGoodgame
         {
             if (_sharedObject != null)
             {
+                _sharedObject.ClearEvents();
                 _sharedObject.Close();
-                _sharedObject.Dispose();
             }
             if (_netConnection != null)
+            {
+                _netConnection.close();
                 _netConnection.Close();
+            }
             
+        }
+        public void Stop()
+        {
+            Disconnect();
+            _sharedObject.Dispose();
+            cwc.Dispose(); 
+            _netConnection = null;
+            _sharedObject = null;        
+        }
+        public void ResultDisconnect(String obj)
+        {
         }
         public void ResultReceived(IPendingServiceCall call)
         {

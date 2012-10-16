@@ -18,6 +18,7 @@ using dotTwitchTV;
 using dotXSplit;
 using dotBattlelog;
 using System.Text.RegularExpressions;
+using dotGohaTV;
 
 namespace Ubiquitous
 {
@@ -273,7 +274,8 @@ namespace Ubiquitous
         private BindingSource channelsSC2;
         private BindingSource channelsGG;
         private uint sc2ChannelId = 0;
-        private BGWorker gohaBW, steamBW, sc2BW, twitchBW, skypeBW, twitchTV, goodgameBW, battlelogBW;
+        private BGWorker gohaBW, gohaStreamBW, steamBW, sc2BW, twitchBW, skypeBW, twitchTV, goodgameBW, battlelogBW;
+        private GohaTV gohaTVstream;
         private Twitch twitchChannel;
         private EndPoint currentChat;
         private Goodgame ggChat;
@@ -338,16 +340,24 @@ namespace Ubiquitous
             gohaBW = new BGWorker(ConnectGohaIRC, null);
             twitchTV = new BGWorker(ConnectTwitchChannel, null);
             skypeBW = new BGWorker(ConnectSkype, null);
+ 
             goodgameBW = new BGWorker(ConnectGoodgame, null);
-            //battlelogBW = new BGWorker(ConnectBattlelog, null);
+            battlelogBW = new BGWorker(ConnectBattlelog, null);
 
-            xsplit = new XSplit();
-            xsplit.OnFrameDrops += OnXSplitFrameDrops;
-            xsplit.OnStatusRefresh += OnXSplitStatusRefresh;
+            if (settings.enableXSplitStats)
+            {
+                xsplit = new XSplit();
+                xsplit.OnFrameDrops += OnXSplitFrameDrops;
+                xsplit.OnStatusRefresh += OnXSplitStatusRefresh;
+            }
+            if (settings.enableStatusServer)
+            {
+                statusServer.Start();
+            }
 
-
-
-            statusServer.Start();
+            gohaTVstream = new GohaTV();
+            gohaStreamBW = new BGWorker(ConnectGohaStream, null);
+            
 
         }
         private void buttonFullscreen_Click(object sender, EventArgs e)
@@ -617,6 +627,12 @@ namespace Ubiquitous
                 skypeBW.Stop();
                 goodgameBW.Stop();
 
+                if (gohaTVstream.StreamStatus == "on")
+                    gohaTVstream.SwitchStream();
+
+                // FlourineFx causing crash on exit if NetConnection object was connected to a server. 
+                // So I using this dirty workaround until I'll find something better.
+                Process.GetCurrentProcess().Kill();
             }
             catch
             {
@@ -624,12 +640,11 @@ namespace Ubiquitous
         }
         private void textMessages_SizeChanged(object sender, EventArgs e)
         {
-
             textMessages.ScrollToEnd();
         }
         private void ShowSettings()
         {
-            Settings settingsForm = new Settings();
+            SettingsDialog settingsForm = new SettingsDialog();
             settingsForm.ShowDialog();
         }
         private Result ParseAdminCommand(string command)
@@ -645,7 +660,27 @@ namespace Ubiquitous
                 return Result.Failed;
         }
         #endregion
+        #region GohaTV Stream methods and events
+        private void ConnectGohaStream()
+        {
+            gohaTVstream.OnLogin += OnGohaStreamLogin;
+            gohaTVstream.OnLive += OnGohaStreamLive;
+            gohaTVstream.OnOffline += OnGohaStreamOffline;
 
+            gohaTVstream.Login(settings.GohaUser, settings.GohaPassword);
+        }
+        private void OnGohaStreamLogin(object sender, EventArgs e)
+        {
+        }
+        private void OnGohaStreamLive(object sender, EventArgs e)
+        {
+            streamStatus.SetOn(pictureGohaStream);
+        }
+        private void OnGohaStreamOffline(object sender, EventArgs e)
+        {
+            streamStatus.SetOff(pictureGohaStream);            
+        }
+        #endregion
         #region Twitch channel methods and events
         private void ConnectTwitchChannel()
         {
@@ -675,10 +710,27 @@ namespace Ubiquitous
 
         private void OnGoLive(object sender, EventArgs e)
         {
+            if (settings.gohaStreamControl)
+            {                
+                if (gohaTVstream.LoggedIn)
+                {
+                    if (gohaTVstream.StreamStatus == "off")
+                        gohaTVstream.SwitchStream();
+                }
+            }
             streamStatus.SetOn(pictureStream);
         }
         private void OnGoOffline(object sender, EventArgs e)
         {
+            if (settings.gohaStreamControl)
+            {
+                if (gohaTVstream.LoggedIn)
+                {
+                    if (gohaTVstream.StreamStatus == "on")
+                        gohaTVstream.SwitchStream();
+                }
+            }
+
             streamStatus.SetOff(pictureStream);
         }
         #endregion
@@ -1082,6 +1134,9 @@ namespace Ubiquitous
         #region XSplit methods and events
         public void OnXSplitFrameDrops(object sender, EventArgs e)
         {
+            if (!settings.enableXSplitStats)
+                return;
+
             XSplit xapp = null;
             uint framesDropped = 0;
             try
@@ -1097,7 +1152,8 @@ namespace Ubiquitous
         }
         public void OnXSplitStatusRefresh(object sender, EventArgs e)
         {
-            statusServer.Broadcast(xsplit.GetJson());
+            if( statusServer != null && settings.enableStatusServer )
+                statusServer.Broadcast(xsplit.GetJson());
         }
         #endregion
 
