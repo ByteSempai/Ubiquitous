@@ -109,7 +109,7 @@ namespace dotGohaTV
 
             result = wc.DownloadString(String.Format(finalAuth, userid));
 
-            StreamStatus = GetSubString(result, @"""status"":""(.*?)""", 1);
+            StreamStatus = GetSubString(result, @"""status"":""(.*?)""", 1).ToLower();
             
             if (String.IsNullOrEmpty(StreamStatus))
                 return false;

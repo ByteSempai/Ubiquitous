@@ -634,5 +634,17 @@ namespace Ubiquitous.Properties {
                 this["gohaStreamControl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gohaStreamControlOnStartExit {
+            get {
+                return ((bool)(this["gohaStreamControlOnStartExit"]));
+            }
+            set {
+                this["gohaStreamControlOnStartExit"] = value;
+            }
+        }
     }
 }

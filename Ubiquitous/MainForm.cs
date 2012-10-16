@@ -671,6 +671,8 @@ namespace Ubiquitous
         }
         private void OnGohaStreamLogin(object sender, EventArgs e)
         {
+            if (settings.gohaStreamControlOnStartExit && gohaTVstream.StreamStatus == "off")
+                gohaTVstream.SwitchStream();
         }
         private void OnGohaStreamLive(object sender, EventArgs e)
         {
