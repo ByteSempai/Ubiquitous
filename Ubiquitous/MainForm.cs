@@ -601,6 +601,12 @@ namespace Ubiquitous
             try
             {
 
+                if ( (settings.gohaStreamControl || settings.gohaStreamControlOnStartExit)
+                    && gohaTVstream.StreamStatus == "on")
+                {
+                    gohaTVstream.SwitchStream();
+                }
+
                 if (twitchIrc != null)
                 {
                     if (twitchIrc.IsRegistered)
@@ -627,8 +633,7 @@ namespace Ubiquitous
                 skypeBW.Stop();
                 goodgameBW.Stop();
 
-                if (gohaTVstream.StreamStatus == "on")
-                    gohaTVstream.SwitchStream();
+
 
                 // FlourineFx causing crash on exit if NetConnection object was connected to a server. 
                 // So I using this dirty workaround until I'll find something better.
@@ -636,6 +641,7 @@ namespace Ubiquitous
             }
             catch
             {
+               
             }
         }
         private void textMessages_SizeChanged(object sender, EventArgs e)
