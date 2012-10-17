@@ -39,13 +39,12 @@
             this.sc2TvruToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textMessages = new SC2TV.RTFControl.ExRichTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.buttonInvisible = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboSc2Channels = new Ubiquitous.ComboBoxWithId();
-            this.comboGGChannels = new Ubiquitous.ComboBoxWithId();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.pictureEmpire = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.pictureGoha = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -71,11 +70,13 @@
             this.buttonFullscreen = new System.Windows.Forms.Button();
             this.imageListChatSize = new System.Windows.Forms.ImageList(this.components);
             this.pictureCurrentChat = new System.Windows.Forms.PictureBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.pictureEmpire = new System.Windows.Forms.PictureBox();
+            this.textMessages = new SC2TV.RTFControl.ExRichTextBox();
+            this.comboSc2Channels = new Ubiquitous.ComboBoxWithId();
+            this.comboGGChannels = new Ubiquitous.ComboBoxWithId();
             this.contextMenuChat.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEmpire)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGoha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBattlelog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGoodgame)).BeginInit();
@@ -88,7 +89,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureGohaStream)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureStream)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCurrentChat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEmpire)).BeginInit();
             this.SuspendLayout();
             // 
             // bWorkerSteamPoll
@@ -166,22 +166,6 @@
             this.panel1.Size = new System.Drawing.Size(782, 563);
             this.panel1.TabIndex = 21;
             // 
-            // textMessages
-            // 
-            this.textMessages.BackColor = System.Drawing.Color.White;
-            this.textMessages.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textMessages.HiglightColor = SC2TV.RTFControl.RtfColor.White;
-            this.textMessages.Location = new System.Drawing.Point(5, 26);
-            this.textMessages.Name = "textMessages";
-            this.textMessages.ReadOnly = true;
-            this.textMessages.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.textMessages.Size = new System.Drawing.Size(628, 534);
-            this.textMessages.TabIndex = 23;
-            this.textMessages.Text = "";
-            this.textMessages.TextColor = SC2TV.RTFControl.RtfColor.Black;
-            this.textMessages.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.textMessages_LinkClicked);
-            this.textMessages.SizeChanged += new System.EventHandler(this.textMessages_SizeChanged);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -211,28 +195,6 @@
             this.label6.TabIndex = 24;
             this.label6.Text = "Sc2Tv:";
             // 
-            // comboSc2Channels
-            // 
-            this.comboSc2Channels.DropDownWidth = 300;
-            this.comboSc2Channels.FormattingEnabled = true;
-            this.comboSc2Channels.Location = new System.Drawing.Point(64, 3);
-            this.comboSc2Channels.Name = "comboSc2Channels";
-            this.comboSc2Channels.Size = new System.Drawing.Size(121, 21);
-            this.comboSc2Channels.TabIndex = 27;
-            this.comboSc2Channels.DropDown += new System.EventHandler(this.comboSc2Channels_DropDown);
-            this.comboSc2Channels.SelectionChangeCommitted += new System.EventHandler(this.comboSc2Channels_SelectionChangeCommitted);
-            // 
-            // comboGGChannels
-            // 
-            this.comboGGChannels.DropDownWidth = 300;
-            this.comboGGChannels.FormattingEnabled = true;
-            this.comboGGChannels.Location = new System.Drawing.Point(276, 3);
-            this.comboGGChannels.Name = "comboGGChannels";
-            this.comboGGChannels.Size = new System.Drawing.Size(121, 21);
-            this.comboGGChannels.TabIndex = 26;
-            this.comboGGChannels.DropDown += new System.EventHandler(this.comboGGChannels_DropDown);
-            this.comboGGChannels.SelectionChangeCommitted += new System.EventHandler(this.comboGGChannels_SelectionChangeCommitted);
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -261,6 +223,27 @@
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chat login status";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(34, 230);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(70, 18);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "Empire.tv";
+            // 
+            // pictureEmpire
+            // 
+            this.pictureEmpire.Image = ((System.Drawing.Image)(resources.GetObject("pictureEmpire.Image")));
+            this.pictureEmpire.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureEmpire.InitialImage")));
+            this.pictureEmpire.Location = new System.Drawing.Point(6, 228);
+            this.pictureEmpire.Name = "pictureEmpire";
+            this.pictureEmpire.Size = new System.Drawing.Size(20, 20);
+            this.pictureEmpire.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureEmpire.TabIndex = 17;
+            this.pictureEmpire.TabStop = false;
             // 
             // label10
             // 
@@ -307,6 +290,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Enabled = false;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.Location = new System.Drawing.Point(32, 151);
             this.label8.Name = "label8";
@@ -527,26 +511,43 @@
             this.pictureCurrentChat.TabStop = false;
             this.pictureCurrentChat.Click += new System.EventHandler(this.pictureCurrentChat_Click);
             // 
-            // label13
+            // textMessages
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(34, 230);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(70, 18);
-            this.label13.TabIndex = 18;
-            this.label13.Text = "Empire.tv";
+            this.textMessages.BackColor = System.Drawing.Color.White;
+            this.textMessages.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textMessages.HiglightColor = SC2TV.RTFControl.RtfColor.White;
+            this.textMessages.Location = new System.Drawing.Point(5, 26);
+            this.textMessages.Name = "textMessages";
+            this.textMessages.ReadOnly = true;
+            this.textMessages.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
+            this.textMessages.Size = new System.Drawing.Size(628, 534);
+            this.textMessages.TabIndex = 23;
+            this.textMessages.Text = "";
+            this.textMessages.TextColor = SC2TV.RTFControl.RtfColor.Black;
+            this.textMessages.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.textMessages_LinkClicked);
+            this.textMessages.SizeChanged += new System.EventHandler(this.textMessages_SizeChanged);
             // 
-            // pictureEmpire
+            // comboSc2Channels
             // 
-            this.pictureEmpire.Image = ((System.Drawing.Image)(resources.GetObject("pictureEmpire.Image")));
-            this.pictureEmpire.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureEmpire.InitialImage")));
-            this.pictureEmpire.Location = new System.Drawing.Point(6, 228);
-            this.pictureEmpire.Name = "pictureEmpire";
-            this.pictureEmpire.Size = new System.Drawing.Size(20, 20);
-            this.pictureEmpire.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureEmpire.TabIndex = 17;
-            this.pictureEmpire.TabStop = false;
+            this.comboSc2Channels.DropDownWidth = 300;
+            this.comboSc2Channels.FormattingEnabled = true;
+            this.comboSc2Channels.Location = new System.Drawing.Point(64, 3);
+            this.comboSc2Channels.Name = "comboSc2Channels";
+            this.comboSc2Channels.Size = new System.Drawing.Size(121, 21);
+            this.comboSc2Channels.TabIndex = 27;
+            this.comboSc2Channels.DropDown += new System.EventHandler(this.comboSc2Channels_DropDown);
+            this.comboSc2Channels.SelectionChangeCommitted += new System.EventHandler(this.comboSc2Channels_SelectionChangeCommitted);
+            // 
+            // comboGGChannels
+            // 
+            this.comboGGChannels.DropDownWidth = 300;
+            this.comboGGChannels.FormattingEnabled = true;
+            this.comboGGChannels.Location = new System.Drawing.Point(276, 3);
+            this.comboGGChannels.Name = "comboGGChannels";
+            this.comboGGChannels.Size = new System.Drawing.Size(121, 21);
+            this.comboGGChannels.TabIndex = 26;
+            this.comboGGChannels.DropDown += new System.EventHandler(this.comboGGChannels_DropDown);
+            this.comboGGChannels.SelectionChangeCommitted += new System.EventHandler(this.comboGGChannels_SelectionChangeCommitted);
             // 
             // MainForm
             // 
@@ -565,6 +566,7 @@
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEmpire)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGoha)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBattlelog)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGoodgame)).EndInit();
@@ -578,7 +580,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureGohaStream)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureStream)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCurrentChat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEmpire)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

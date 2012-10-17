@@ -44,9 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CookieAwareWebClient.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Goodgame.cs" />
     <Compile Include="JScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,6 +52,10 @@
     <ProjectReference Include="..\dotFlex4\FluorineFx\dotFlex.csproj">
       <Project>{A9B8375B-579D-4F8A-B00C-F2828DB58F3A}</Project>
       <Name>dotFlex</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebClient\dotWebClient.csproj">
+      <Project>{E7DD099E-384E-4EDB-B217-D4850ACE32BC}</Project>
+      <Name>dotWebClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,16 +11,18 @@ using dotFlex.Messaging.Api;
 using dotFlex.Messaging.Api.Service;
 using System.Security.Cryptography;
 using Microsoft.JScript;
-
+using dotWebClient;
+using System.Text.RegularExpressions;
 namespace dotGoodgame
 {
     public class Goodgame
     {
         private NetConnection _netConnection;
         private const string _chatUrl = "rtmp://www.goodgame.ru/chat";
-        private const string _channelListUrl = @"http://www.goodgame.ru/chatuser.php?ocd=getrooms&_={0}";
+        private const string _channelUrl = @"http://www.goodgame.ru/channel/{0}";
         private string _chatId;
         private int _userId;
+        private string _user;
         private string _userToken;
         private List<GGChannel> _channels;
         private bool _loadHistory;
@@ -202,6 +204,7 @@ namespace dotGoodgame
             _loadHistory = loadHistory;
             _chatId = null;
             _userId = -1;
+            _user = user;
             _channels = new List<GGChannel>();
 
             if( !String.IsNullOrEmpty(user) )
@@ -341,27 +344,7 @@ namespace dotGoodgame
         #region Public methods
         public void updateChannelList()
         {
-            var jsString = cwc.DownloadString(String.Format( _channelListUrl, (DateTime.UtcNow - new DateTime(1970,1,1,0,0,0)).TotalSeconds ));
-
-            var obj = (List<object>)JSEvaluator.EvalArrayObject(jsString);
-            if( obj == null )
-                return;
-
-            _channels.Clear();
-            foreach ( var co in obj)
-            {
-                try
-                {
-                    var id = (int)((ArrayObject)co)[0];
-                    var title = (string)((ArrayObject)co)[1];
-                    var viewers = (int)((ArrayObject)co)[2];
-                    if (!String.IsNullOrEmpty(title))
-                        _channels.Add(new GGChannel(id, title, viewers));
-                }
-                catch { }
-            }
-            if( OnChannelListReceived != null )
-                DefaultEvent(OnChannelListReceived, new EventArgs());
+            //Channel list isn't available after site update.
         }
         public void addHistory(object[] history)
         {
@@ -382,6 +365,17 @@ namespace dotGoodgame
         }
         public void Connect(string chatId)
         {
+            //Will make it work if I'll get goodgame streaming rights
+            return; 
+
+            var result = cwc.DownloadString(String.Format(_channelUrl,_user));
+            if (string.IsNullOrEmpty(result))
+                return;
+
+            ChatId = GetSubString(result, @"chatroom=(\d+)", 1);
+
+            if (string.IsNullOrEmpty(ChatId))
+                return;
             
             _chatId = chatId;
 
@@ -402,16 +396,20 @@ namespace dotGoodgame
             _sharedObject.SendMessage += new SendMessageHandler(_sharedObject_NewMessage);
 
         }
+
         public string ChatId
         {
             get { return _chatId; }
             set
             {
-                if (_chatId != value)
+                if (_chatId != value )
                 {
                     _chatId = value;
-                    Disconnect();
-                    Connect(_chatId);
+                    if (!string.IsNullOrEmpty(_chatId))
+                    {
+                        Disconnect();
+                        Connect(_chatId);
+                    }
                 }
             }
         }
@@ -457,6 +455,24 @@ namespace dotGoodgame
         public List<GGChannel> Channels
         {
             get { return _channels; }
+        }
+
+        private string GetSubString(string input, string re, int index)
+        {
+            var match = Regex.Match(input, re);
+            if (!match.Success)
+                return null;
+
+            if (match.Groups.Count <= index)
+                return null;
+
+            var result = match.Groups[index].Value;
+
+            if (String.IsNullOrEmpty(result))
+                return null;
+
+            return result;
+
         }
         #endregion
     }
