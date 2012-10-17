@@ -289,6 +289,8 @@ namespace dotGoodgame
             
             if( OnConnect != null )
                 DefaultEvent(OnConnect, new EventArgs());
+
+            //_netConnection.Call("msgFromClient", new Responder<object[]>(msgFromClient), new object[] { 0, null, "test3", "2304" });
         }
         void _netConnection_NetStatus(object sender, NetStatusEventArgs e)
         {
@@ -346,6 +348,10 @@ namespace dotGoodgame
         {
             //Channel list isn't available after site update.
         }
+        public void msgFromClient(object[] result)
+        {
+
+        }
         public void addHistory(object[] history)
         {
             foreach (var a in history)
@@ -363,29 +369,25 @@ namespace dotGoodgame
             OnChannelListReceived = null;
             OnError = null;
         }
-        public void Connect(string chatId)
+        public void Connect()
         {
-            //Will make it work if I'll get goodgame streaming rights
-            return; 
 
             var result = cwc.DownloadString(String.Format(_channelUrl,_user));
             if (string.IsNullOrEmpty(result))
                 return;
 
-            ChatId = GetSubString(result, @"chatroom=(\d+)", 1);
+            ChatId = GetSubString(result, @"""chatroom"":""(.*?)""", 1);
 
             if (string.IsNullOrEmpty(ChatId))
-                return;
-            
-            _chatId = chatId;
+                return;             
 
             _netConnection = new NetConnection();
             _netConnection.ObjectEncoding = ObjectEncoding.AMF0;
             _netConnection.OnConnect += _netConnection_OnConnect;
             _netConnection.NetStatus += _netConnection_NetStatus;
             _netConnection.Client = this;
-            _netConnection.Connect(_chatUrl, _userId, _userToken, _chatId);
-            _sharedObject = (GGChat)RemoteSharedObject.GetRemote(typeof(GGChat), "chat" + _chatId, _chatUrl, true);
+            _netConnection.Connect(_chatUrl, _userId, _userToken, ChatId);
+            _sharedObject = (GGChat)RemoteSharedObject.GetRemote(typeof(GGChat), "chat" + ChatId, _chatUrl, true);
             _sharedObject.ClearEvents();
             _sharedObject.MessageReceived += OnMessageReceived;
             _sharedObject.ObjectEncoding = ObjectEncoding.AMF0;
@@ -405,10 +407,10 @@ namespace dotGoodgame
                 if (_chatId != value )
                 {
                     _chatId = value;
-                    if (!string.IsNullOrEmpty(_chatId))
+                    if (!string.IsNullOrEmpty(_chatId) && _netConnection != null)
                     {
                         Disconnect();
-                        Connect(_chatId);
+                        Connect();
                     }
                 }
             }
@@ -442,6 +444,7 @@ namespace dotGoodgame
         {
             object result = call.Result;
         }
+        
         private string GetMd5Hash(MD5 md5Hash, string input)
         {        
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));

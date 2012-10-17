@@ -864,7 +864,6 @@
             this.checkBox16.AutoSize = true;
             this.checkBox16.Checked = global::Ubiquitous.Properties.Settings.Default.goodgameLoadHistory;
             this.checkBox16.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Ubiquitous.Properties.Settings.Default, "goodgameLoadHistory", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox16.Enabled = false;
             this.checkBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBox16.Location = new System.Drawing.Point(44, 186);
             this.checkBox16.Name = "checkBox16";
@@ -876,7 +875,6 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Enabled = false;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label14.Location = new System.Drawing.Point(38, 95);
             this.label14.Name = "label14";
@@ -887,7 +885,6 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Enabled = false;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label15.Location = new System.Drawing.Point(57, 68);
             this.label15.Name = "label15";
@@ -898,7 +895,6 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Enabled = false;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label13.Location = new System.Drawing.Point(38, 41);
             this.label13.Name = "label13";
@@ -911,7 +907,6 @@
             this.checkBox15.AutoSize = true;
             this.checkBox15.Checked = global::Ubiquitous.Properties.Settings.Default.goodgameSanitizeSmiles;
             this.checkBox15.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Ubiquitous.Properties.Settings.Default, "goodgameSanitizeSmiles", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox15.Enabled = false;
             this.checkBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBox15.Location = new System.Drawing.Point(44, 163);
             this.checkBox15.Name = "checkBox15";
@@ -923,7 +918,6 @@
             // textBox14
             // 
             this.textBox14.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Ubiquitous.Properties.Settings.Default, "goodgameUser", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox14.Enabled = false;
             this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox14.Location = new System.Drawing.Point(97, 66);
             this.textBox14.Name = "textBox14";
@@ -936,7 +930,6 @@
             this.checkBox14.AutoSize = true;
             this.checkBox14.Checked = global::Ubiquitous.Properties.Settings.Default.goodgameLeaveJoinMessages;
             this.checkBox14.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Ubiquitous.Properties.Settings.Default, "goodgameLeaveJoinMessages", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox14.Enabled = false;
             this.checkBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBox14.Location = new System.Drawing.Point(44, 140);
             this.checkBox14.Name = "checkBox14";
@@ -948,7 +941,6 @@
             // textBox13
             // 
             this.textBox13.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Ubiquitous.Properties.Settings.Default, "goodgameChatAlias", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox13.Enabled = false;
             this.textBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox13.Location = new System.Drawing.Point(97, 37);
             this.textBox13.Name = "textBox13";
@@ -959,7 +951,6 @@
             // textBox15
             // 
             this.textBox15.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Ubiquitous.Properties.Settings.Default, "goodgamePassword", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox15.Enabled = false;
             this.textBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox15.Location = new System.Drawing.Point(97, 92);
             this.textBox15.Name = "textBox15";
@@ -973,7 +964,6 @@
             this.checkBox11.AutoSize = true;
             this.checkBox11.Checked = global::Ubiquitous.Properties.Settings.Default.goodgameEnabled;
             this.checkBox11.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Ubiquitous.Properties.Settings.Default, "goodgameEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox11.Enabled = false;
             this.checkBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBox11.Location = new System.Drawing.Point(44, 12);
             this.checkBox11.Name = "checkBox11";
@@ -987,7 +977,6 @@
             this.checkBox12.AutoSize = true;
             this.checkBox12.Checked = global::Ubiquitous.Properties.Settings.Default.goodgamePersonalizedOnly;
             this.checkBox12.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Ubiquitous.Properties.Settings.Default, "goodgamePersonalizedOnly", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox12.Enabled = false;
             this.checkBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBox12.Location = new System.Drawing.Point(44, 117);
             this.checkBox12.Name = "checkBox12";

@@ -306,6 +306,7 @@ namespace Ubiquitous
             chatAliases.Add(new ChatAlias(settings.battlelogChatAlias, EndPoint.Battlelog));
             chatAliases.Add(new ChatAlias(settings.gohaChatAlias, EndPoint.Gohatv));
             chatAliases.Add(new ChatAlias(settings.empireAlias, EndPoint.Empiretv));
+            chatAliases.Add(new ChatAlias(settings.goodgameChatAlias, EndPoint.Goodgame));
             chatAliases.Add(new ChatAlias("@all", EndPoint.All));
 
             sc2tv = new Sc2Chat(settings.sc2LoadHistory);
@@ -1150,15 +1151,15 @@ namespace Ubiquitous
             if (!settings.goodgameEnabled)
                 return;
 
-            if (ggChat != null)
-                ggChat.Disconnect();
+            //if (ggChat != null)
+            //    ggChat.Disconnect();
             ggChat = new Goodgame(settings.goodgameUser, settings.goodgamePassword, settings.goodgameLoadHistory);
 
             ggChat.OnMessageReceived += OnGGMessageReceived;
             ggChat.OnConnect += OnGGConnect;
             ggChat.OnChannelListReceived += OnGGChannelListReceived;
             ggChat.OnError += OnGGError;
-            ggChat.updateChannelList();
+            ggChat.Connect();
         }
         public void OnGGConnect(object sender, EventArgs e)
         {
