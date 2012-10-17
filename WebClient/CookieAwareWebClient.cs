@@ -4,20 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.Net.Cache;
+using System.Collections.Generic;
 
 
 namespace dotWebClient
 {
+
+    public enum ContentType
+    {
+        UrlEncoded
+    }
+
     public class CookieAwareWebClient : WebClient
     {
         private readonly CookieContainer m_container = new CookieContainer();
+        private Dictionary<ContentType, string> contentTypes;
+
         public bool stillReading = false;
         public CookieAwareWebClient()
         {
             ServicePointManager.DefaultConnectionLimit = 5;
             ServicePointManager.Expect100Continue = false;
             ServicePointManager.UseNagleAlgorithm = false;
-
+            contentTypes = new Dictionary<ContentType, string>();
+            contentTypes.Add(ContentType.UrlEncoded, "application/x-www-form-urlencoded");
         }
         protected override WebRequest GetWebRequest(Uri address)
         {
@@ -56,5 +66,10 @@ namespace dotWebClient
 
             return null;
         }
+        public ContentType ContentType
+        {
+            set { this.Headers[HttpRequestHeader.ContentType] = contentTypes[value]; }
+        }
+        
     }
 }

@@ -63,14 +63,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureTwitch = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.pictureGohaStream = new System.Windows.Forms.PictureBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.pictureStream = new System.Windows.Forms.PictureBox();
             this.buttonSettings = new System.Windows.Forms.Button();
             this.buttonFullscreen = new System.Windows.Forms.Button();
             this.imageListChatSize = new System.Windows.Forms.ImageList(this.components);
             this.pictureCurrentChat = new System.Windows.Forms.PictureBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.pictureGohaStream = new System.Windows.Forms.PictureBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.pictureEmpire = new System.Windows.Forms.PictureBox();
             this.contextMenuChat.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -83,9 +85,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureSc2tv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureTwitch)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGohaStream)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureStream)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCurrentChat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureGohaStream)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEmpire)).BeginInit();
             this.SuspendLayout();
             // 
             // bWorkerSteamPoll
@@ -233,6 +236,8 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.pictureEmpire);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.pictureGoha);
             this.groupBox1.Controls.Add(this.label9);
@@ -252,7 +257,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(638, 11);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(140, 253);
+            this.groupBox1.Size = new System.Drawing.Size(140, 262);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chat login status";
@@ -433,12 +438,42 @@
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.pictureStream);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(638, 307);
+            this.groupBox2.Location = new System.Drawing.Point(638, 296);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(140, 86);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Stream status";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(31, 53);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(50, 13);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Goha.TV";
+            // 
+            // pictureGohaStream
+            // 
+            this.pictureGohaStream.Image = ((System.Drawing.Image)(resources.GetObject("pictureGohaStream.Image")));
+            this.pictureGohaStream.Location = new System.Drawing.Point(6, 47);
+            this.pictureGohaStream.Name = "pictureGohaStream";
+            this.pictureGohaStream.Size = new System.Drawing.Size(21, 24);
+            this.pictureGohaStream.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureGohaStream.TabIndex = 2;
+            this.pictureGohaStream.TabStop = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.Location = new System.Drawing.Point(31, 25);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Twitch.TV";
             // 
             // pictureStream
             // 
@@ -453,7 +488,7 @@
             // buttonSettings
             // 
             this.buttonSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSettings.Location = new System.Drawing.Point(672, 411);
+            this.buttonSettings.Location = new System.Drawing.Point(639, 403);
             this.buttonSettings.Name = "buttonSettings";
             this.buttonSettings.Size = new System.Drawing.Size(75, 23);
             this.buttonSettings.TabIndex = 20;
@@ -492,35 +527,26 @@
             this.pictureCurrentChat.TabStop = false;
             this.pictureCurrentChat.Click += new System.EventHandler(this.pictureCurrentChat_Click);
             // 
-            // label11
+            // label13
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(31, 25);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Twitch.TV";
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(34, 230);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(70, 18);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "Empire.tv";
             // 
-            // label12
+            // pictureEmpire
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(31, 53);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(50, 13);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "Goha.TV";
-            // 
-            // pictureGohaStream
-            // 
-            this.pictureGohaStream.Image = ((System.Drawing.Image)(resources.GetObject("pictureGohaStream.Image")));
-            this.pictureGohaStream.Location = new System.Drawing.Point(6, 47);
-            this.pictureGohaStream.Name = "pictureGohaStream";
-            this.pictureGohaStream.Size = new System.Drawing.Size(21, 24);
-            this.pictureGohaStream.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureGohaStream.TabIndex = 2;
-            this.pictureGohaStream.TabStop = false;
+            this.pictureEmpire.Image = ((System.Drawing.Image)(resources.GetObject("pictureEmpire.Image")));
+            this.pictureEmpire.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureEmpire.InitialImage")));
+            this.pictureEmpire.Location = new System.Drawing.Point(6, 228);
+            this.pictureEmpire.Name = "pictureEmpire";
+            this.pictureEmpire.Size = new System.Drawing.Size(20, 20);
+            this.pictureEmpire.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureEmpire.TabIndex = 17;
+            this.pictureEmpire.TabStop = false;
             // 
             // MainForm
             // 
@@ -549,9 +575,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureTwitch)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGohaStream)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureStream)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCurrentChat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureGohaStream)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEmpire)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -600,6 +627,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox pictureGohaStream;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.PictureBox pictureEmpire;
     }
 }
 

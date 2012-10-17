@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
-using System.Net;
 using System.Threading;
 using dotWebClient;
 using System.Security.Cryptography;
@@ -88,8 +87,8 @@ namespace dotGohaTV
                     "vb_login_username={0}&cookieuser=1&vb_login_password=&s=&securitytoken=guest&do=login&vb_login_md5password={1}&vb_login_md5password_utf={2}",
                     user, GetMd5Hash(password), GetMd5Hash(password)
                 );
-                
-            wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+
+            wc.ContentType = ContentType.UrlEncoded;
             wc.UploadString(loginUrl, loginParams);
             var result = wc.DownloadString(uidgetUrl);
             if( String.IsNullOrEmpty(result) )

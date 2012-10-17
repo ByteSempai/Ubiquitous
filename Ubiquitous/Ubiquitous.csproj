@@ -115,6 +115,10 @@
       <Project>{AC4CCB95-2F7F-44BE-BCA8-6516EDA2FC38}</Project>
       <Name>dotBattlelog</Name>
     </ProjectReference>
+    <ProjectReference Include="..\dotEmpireTV\dotEmpireTV.csproj">
+      <Project>{B17F3733-0E27-4604-AD64-62F7A6B56948}</Project>
+      <Name>dotEmpireTV</Name>
+    </ProjectReference>
     <ProjectReference Include="..\dotGohaTV\dotGohaTV.csproj">
       <Project>{F716F52E-E9B4-4B0F-A526-70CEEB7E1F59}</Project>
       <Name>dotGohaTV</Name>

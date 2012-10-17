@@ -25,5 +25,10 @@ namespace Ubiquitous
         {
             Properties.Settings.Default.Save();
         }
+
+        private void settingsPage9_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

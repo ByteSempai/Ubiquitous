@@ -646,5 +646,89 @@ namespace Ubiquitous.Properties {
                 this["gohaStreamControlOnStartExit"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool empireEnabled {
+            get {
+                return ((bool)(this["empireEnabled"]));
+            }
+            set {
+                this["empireEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@etv")]
+        public string empireAlias {
+            get {
+                return ((string)(this["empireAlias"]));
+            }
+            set {
+                this["empireAlias"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string empireUser {
+            get {
+                return ((string)(this["empireUser"]));
+            }
+            set {
+                this["empireUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string empirePassword {
+            get {
+                return ((string)(this["empirePassword"]));
+            }
+            set {
+                this["empirePassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool empireSendStatus {
+            get {
+                return ((bool)(this["empireSendStatus"]));
+            }
+            set {
+                this["empireSendStatus"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool empirePersonalizedOnly {
+            get {
+                return ((bool)(this["empirePersonalizedOnly"]));
+            }
+            set {
+                this["empirePersonalizedOnly"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool empireLeavJoinMessages {
+            get {
+                return ((bool)(this["empireLeavJoinMessages"]));
+            }
+            set {
+                this["empireLeavJoinMessages"] = value;
+            }
+        }
     }
 }

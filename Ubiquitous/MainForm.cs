@@ -19,6 +19,7 @@ using dotXSplit;
 using dotBattlelog;
 using System.Text.RegularExpressions;
 using dotGohaTV;
+using dotEmpireTV;
 
 namespace Ubiquitous
 {
@@ -38,6 +39,7 @@ namespace Ubiquitous
             Goodgame,
             Battlelog,
             Gohatv,
+            Empiretv,
             All
         }
         private class ChatAlias
@@ -274,7 +276,9 @@ namespace Ubiquitous
         private BindingSource channelsSC2;
         private BindingSource channelsGG;
         private uint sc2ChannelId = 0;
-        private BGWorker gohaBW, gohaStreamBW, steamBW, sc2BW, twitchBW, skypeBW, twitchTV, goodgameBW, battlelogBW;
+        private BGWorker gohaBW, gohaStreamBW, steamBW, sc2BW, twitchBW, skypeBW, twitchTV, goodgameBW, battlelogBW,
+                        empireBW;
+        private EmpireTV empireTV;
         private GohaTV gohaTVstream;
         private Twitch twitchChannel;
         private EndPoint currentChat;
@@ -301,6 +305,7 @@ namespace Ubiquitous
             chatAliases.Add(new ChatAlias(settings.skypeChatAlias, EndPoint.Skype));
             chatAliases.Add(new ChatAlias(settings.battlelogChatAlias, EndPoint.Battlelog));
             chatAliases.Add(new ChatAlias(settings.gohaChatAlias, EndPoint.Gohatv));
+            chatAliases.Add(new ChatAlias(settings.empireAlias, EndPoint.Empiretv));
             chatAliases.Add(new ChatAlias("@all", EndPoint.All));
 
             sc2tv = new Sc2Chat(settings.sc2LoadHistory);
@@ -357,7 +362,9 @@ namespace Ubiquitous
 
             gohaTVstream = new GohaTV();
             gohaStreamBW = new BGWorker(ConnectGohaStream, null);
-            
+
+            empireTV = new EmpireTV();
+            empireBW = new BGWorker(ConnectEmpireTV, null);
 
         }
         private void buttonFullscreen_Click(object sender, EventArgs e)
@@ -516,6 +523,7 @@ namespace Ubiquitous
             {
                 case EndPoint.All:
                     {
+                        SendMessageToEmpireTV(message);
                         SendMessageToGohaIRC(message);
                         SendMessageToTwitchIRC(message);
                         SendMessageToSc2Tv(message);
@@ -538,6 +546,9 @@ namespace Ubiquitous
                     break;
                 case EndPoint.Gohatv:
                     SendMessageToGohaIRC(message);
+                    break;
+                case EndPoint.Empiretv:
+                    SendMessageToEmpireTV(message);
                     break;
             }
             if (!isFlood(message))
@@ -591,6 +602,16 @@ namespace Ubiquitous
             }
 
         }
+
+        private void SendMessageToEmpireTV(Message message)
+        {
+            if (settings.empireEnabled && empireTV.LoggedIn &&
+                (message.FromEndPoint == EndPoint.Console || message.FromEndPoint == EndPoint.SteamAdmin))
+            {
+                empireTV.SendMessage(message.Text);
+            }
+        }
+
 
         private void pictureCurrentChat_Click(object sender, EventArgs e)
         {
@@ -666,9 +687,34 @@ namespace Ubiquitous
                 return Result.Failed;
         }
         #endregion
+        #region EmpireTV methods and events
+        private void ConnectEmpireTV()
+        {
+            if (!settings.empireEnabled || String.IsNullOrEmpty(settings.empireUser) || String.IsNullOrEmpty(settings.empirePassword))
+                return;
+
+            empireTV.OnLogin += OnEmpireLogin;
+            empireTV.OnNewMessage += OnEmpireMessage;
+
+            empireTV.Login(settings.empireUser, settings.empirePassword);
+        }
+        private void OnEmpireLogin(object sender, EventArgs e)
+        {
+            checkMark.SetOn(pictureEmpire);
+            empireTV.UpdateChat();
+        }
+        private void OnEmpireMessage(object sender, MessageArgs e)
+        {
+            SendMessage(new Message(String.Format("{0} ({1}{2})", e.Message.text, e.Message.nick, settings.empireAlias), EndPoint.Empiretv, EndPoint.SteamAdmin));
+        }
+        #endregion
+
         #region GohaTV Stream methods and events
         private void ConnectGohaStream()
         {
+            if (!settings.gohaEnabled || String.IsNullOrEmpty(settings.GohaUser) || String.IsNullOrEmpty(settings.GohaPassword))
+                return;
+
             gohaTVstream.OnLogin += OnGohaStreamLogin;
             gohaTVstream.OnLive += OnGohaStreamLive;
             gohaTVstream.OnOffline += OnGohaStreamOffline;
@@ -892,7 +938,7 @@ namespace Ubiquitous
             if( to == settings.Sc2tvUser && 
                 settings.sc2tvPersonalizedOnly )
             {
-                SendMessage(new Message(String.Format("{0} ({1})", message, e.message.name), EndPoint.Sc2Tv, EndPoint.SteamAdmin));
+                SendMessage(new Message(String.Format("{0} ({1}{2})", message, e.message.name, settings.sc2tvChatAlias), EndPoint.Sc2Tv, EndPoint.SteamAdmin));
             }
             else
             {
@@ -1082,7 +1128,7 @@ namespace Ubiquitous
         }
         public void OnMessageReceived(object sender, ChatMessageEventArgs e)
         {
-            SendMessage(new Message(String.Format("{0} ({1})", e.Text, e.From), EndPoint.Skype, EndPoint.SteamAdmin));
+            SendMessage(new Message(String.Format("{0} ({1}{2})", e.Text, e.From,settings.skypeChatAlias), EndPoint.Skype, EndPoint.SteamAdmin));
         }
         public void OnIncomingCall(object sender, CallEventArgs e)
         {
@@ -1131,7 +1177,7 @@ namespace Ubiquitous
         }
         public void OnGGMessageReceived(object sender, Goodgame.GGMessageEventArgs e)
         {
-            SendMessage(new Message(String.Format("{0} ({1})", e.Message.Text, e.Message.Sender.Name), EndPoint.Goodgame,EndPoint.SteamAdmin));
+            SendMessage(new Message(String.Format("{0} ({1}{2})", e.Message.Text, e.Message.Sender.Name, settings.goodgameChatAlias), EndPoint.Goodgame, EndPoint.SteamAdmin));
         }
         private void OnGGError(object sender, Goodgame.TextEventArgs e)
         {
@@ -1197,7 +1243,7 @@ namespace Ubiquitous
             if (settings.battlelogEnabled)
             {
                 if( e.message.fromUsername != settings.battlelogNick )
-                    SendMessage(new Message(String.Format("{0} ({1})", e.message.message, e.message.fromUsername), EndPoint.Battlelog, EndPoint.SteamAdmin));                    
+                    SendMessage(new Message(String.Format("{0} ({1}{2})", e.message.message, e.message.fromUsername, settings.battlelogChatAlias), EndPoint.Battlelog, EndPoint.SteamAdmin));                    
             }
         }
 
