@@ -7,6 +7,7 @@ using dotWebClient;
 using System.Threading;
 using System.Net;
 using System.Web;
+using System.Diagnostics;
 
 namespace dotEmpireTV
 {
@@ -88,9 +89,11 @@ namespace dotEmpireTV
         {
             wc = new CookieAwareWebClient();
             wc.Headers["User-Agent"] = userAgent;
+            Messages = null;
             lastMessages = new List<Message>();
             LoggedIn = false;
             Enabled = false;
+            LoadHistory = false;
         }
         public void SendMessage( String text )
         {
@@ -103,6 +106,7 @@ namespace dotEmpireTV
         }
         public void Poll()
         {
+            Debug.WriteLine("Poll started");
             while (Enabled)
             {
                 UpdateChat();
@@ -114,12 +118,22 @@ namespace dotEmpireTV
         {
             UpdateChat(UserID);
         }
-        public void UpdateChat( String chatid )
+        public void UpdateChat( String chatid)
         {
             CurrentChatID = chatid;
             var result = wc.DownloadString(String.Format(getChatUrl,chatid,unixTimestamp()));
 
+            if (String.IsNullOrEmpty(result))
+                return;
+
             var messages = ParseJson<List<Message>>.ReadObject(result);
+
+            if (messages == null)
+                return;
+
+            if (!LoadHistory && Messages == null)
+                lastMessages = messages;
+
             Messages = messages.Except(lastMessages, new LambdaComparer<Message>((x, y) => x.id == y.id)).ToList();
 
             if (Messages == null)
@@ -181,9 +195,22 @@ namespace dotEmpireTV
         public bool Enabled
         {
             get { return _enabled; }
-            set { _enabled = value;  if( _enabled ) ThreadPool.QueueUserWorkItem(c => Poll()); }
+            set
+            {
+                if (_enabled != value)
+                {
+                    _enabled = value;
+                    if (_enabled)
+                        ThreadPool.QueueUserWorkItem(c => Poll());
+                }
+            }
         }
         public bool LoggedIn
+        {
+            get;
+            set;
+        }
+        public bool LoadHistory
         {
             get;
             set;

@@ -701,7 +701,8 @@ namespace Ubiquitous
         private void OnEmpireLogin(object sender, EventArgs e)
         {
             checkMark.SetOn(pictureEmpire);
-            empireTV.UpdateChat();
+            empireTV.LoadHistory = settings.empireLoadHistory;
+            empireTV.Enabled = true;
         }
         private void OnEmpireMessage(object sender, MessageArgs e)
         {

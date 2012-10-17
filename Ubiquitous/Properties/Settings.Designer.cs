@@ -730,5 +730,17 @@ namespace Ubiquitous.Properties {
                 this["empireLeavJoinMessages"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool empireLoadHistory {
+            get {
+                return ((bool)(this["empireLoadHistory"]));
+            }
+            set {
+                this["empireLoadHistory"] = value;
+            }
+        }
     }
 }
