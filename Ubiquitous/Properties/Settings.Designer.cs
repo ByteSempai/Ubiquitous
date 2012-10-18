@@ -217,7 +217,7 @@ namespace Ubiquitous.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool skypeEnabled {
             get {
                 return ((bool)(this["skypeEnabled"]));
@@ -229,7 +229,7 @@ namespace Ubiquitous.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool sc2tvEnabled {
             get {
                 return ((bool)(this["sc2tvEnabled"]));
@@ -241,7 +241,7 @@ namespace Ubiquitous.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool twitchEnabled {
             get {
                 return ((bool)(this["twitchEnabled"]));
@@ -253,7 +253,7 @@ namespace Ubiquitous.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool steamEnabled {
             get {
                 return ((bool)(this["steamEnabled"]));
@@ -313,7 +313,7 @@ namespace Ubiquitous.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool goodgameEnabled {
             get {
                 return ((bool)(this["goodgameEnabled"]));
@@ -481,7 +481,7 @@ namespace Ubiquitous.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool battlelogEnabled {
             get {
                 return ((bool)(this["battlelogEnabled"]));
@@ -577,7 +577,7 @@ namespace Ubiquitous.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool gohaEnabled {
             get {
                 return ((bool)(this["gohaEnabled"]));
@@ -649,7 +649,7 @@ namespace Ubiquitous.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool empireEnabled {
             get {
                 return ((bool)(this["empireEnabled"]));

@@ -51,16 +51,16 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="skypeEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="sc2tvEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="twitchEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="steamEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="steamChatAlias" Type="System.String" Scope="User">
       <Value Profile="(Default)">@stm</Value>
@@ -75,7 +75,7 @@
       <Value Profile="(Default)">@sky</Value>
     </Setting>
     <Setting Name="goodgameEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="goodgameChatAlias" Type="System.String" Scope="User">
       <Value Profile="(Default)">@gg</Value>
@@ -117,7 +117,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="battlelogEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="battlelogNick" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -141,7 +141,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="gohaEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="GohaIRCChannel" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -159,7 +159,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="empireEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="empireAlias" Type="System.String" Scope="User">
       <Value Profile="(Default)">@etv</Value>
