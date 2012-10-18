@@ -20,6 +20,7 @@ using dotBattlelog;
 using System.Text.RegularExpressions;
 using dotGohaTV;
 using dotEmpireTV;
+using System.Configuration;
 
 namespace Ubiquitous
 {
@@ -255,7 +256,7 @@ namespace Ubiquitous
         #endregion 
 
         #region Private properties
-        private Properties.Settings settings = Properties.Settings.Default;
+        private Properties.Settings settings;
         private const string twitchIRCDomain = "jtvirc.com";
         private const string gohaIRCDomain = "i.gohanet.ru";
         private Log log;
@@ -291,6 +292,9 @@ namespace Ubiquitous
         #region Form events and methods
         public MainForm()
         {
+            //UnprotectConfig();
+            settings = Properties.Settings.Default;
+
             InitializeComponent();
             currentChat = EndPoint.TwitchTV;
             lastMessageSent = new Message("", EndPoint.Console);
@@ -367,6 +371,8 @@ namespace Ubiquitous
             empireTV = new EmpireTV();
             empireBW = new BGWorker(ConnectEmpireTV, null);
 
+           
+
         }
         private void buttonFullscreen_Click(object sender, EventArgs e)
         {
@@ -386,6 +392,8 @@ namespace Ubiquitous
         {
             SettingsDialog settingsForm = new SettingsDialog();
             settingsForm.ShowDialog();
+            ProtectConfig();
+
         }
         private void comboSc2Channels_DropDown(object sender, EventArgs e)
         {
@@ -1347,7 +1355,61 @@ namespace Ubiquitous
             gohaIrc.LocalUser.MessageReceived += OnGohaMessageReceivedLocal;
             gohaIrc.LocalUser.JoinedChannel += OnGohaChannelJoinLocal;
             gohaIrc.LocalUser.LeftChannel += OnGohaChannelLeftLocal;
-        }    
+        }
+
+        private void UnprotectConfig()
+        {
+            try
+            {
+                // Open the configuration file and retrieve 
+                // the connectionStrings section.
+                Configuration config = ConfigurationManager.
+                    OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
+
+                ConfigurationSectionGroup group = config.GetSectionGroup("userSettings") as ConfigurationSectionGroup;
+                foreach (ConfigurationSection section in group.Sections)
+                {
+                    if (section.SectionInformation.IsProtected)
+                    {
+                        // Encrypt the section.
+                        section.SectionInformation.UnprotectSection();
+                    }
+                }
+                // Save the current configuration.
+                config.Save();
+
+            }
+            catch
+            {
+            }
+        }
+        static void ProtectConfig()
+        {
+            try
+            {
+                // Open the configuration file and retrieve 
+                // the connectionStrings section.
+                    Configuration config = ConfigurationManager.
+                        OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
+
+                    ConfigurationSectionGroup group = config.GetSectionGroup("userSettings") as ConfigurationSectionGroup;
+                    foreach (ConfigurationSection section in group.Sections)
+                    {
+                        if (!section.SectionInformation.IsProtected)
+                        {
+                            // Encrypt the section.
+                            section.SectionInformation.ProtectSection(
+                                "DataProtectionConfigurationProvider");
+                        }
+                    }
+                    // Save the current configuration.
+                    config.Save();
+
+            }
+            catch
+            {
+            }
+        }
         #endregion
 
 

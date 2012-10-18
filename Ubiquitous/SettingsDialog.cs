@@ -24,6 +24,7 @@ namespace Ubiquitous
         private void SettingsDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Save();
+
         }
 
         private void settingsPage9_Paint(object sender, PaintEventArgs e)

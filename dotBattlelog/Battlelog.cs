@@ -317,6 +317,8 @@ namespace dotBattlelog
                 {
                     case "NotificationEventUserCameOnline":
                         var headerStatus = ParseJson<Header<User>>.ReadObject(e.Message);
+                        if (headerStatus == null)
+                            break;
                         var onlineStatus = headerStatus.data.data;
                         if (onlineStatus == null)
                             break;
@@ -324,6 +326,8 @@ namespace dotBattlelog
                         break;
                     case "ChatMessageIncoming":
                         var headerMessage = ParseJson<Header<BattleChatMessage>>.ReadObject(e.Message);
+                        if (headerMessage == null)
+                            break;
                         var chatMessage = headerMessage.data.data;
                         if (chatMessage == null)
                             break;
@@ -334,6 +338,8 @@ namespace dotBattlelog
                         break;
                     case "UserPresenceChanged":
                         var headerPresence = ParseJson<Header<Presence>>.ReadObject(e.Message);
+                        if (headerPresence == null)
+                            break;
                         var player = headerPresence.data.data;
                         if (player == null)
                             break;
@@ -341,6 +347,8 @@ namespace dotBattlelog
                         break;
                     case "FeedEventCreated":
                         var headerFeed = ParseJson<Header<FeedEvent>>.ReadObject(e.Message);
+                        if (headerFeed == null)
+                            break;
                         var feedevent = headerFeed.data.data;
                         if (feedevent == null)
                             break;
@@ -351,6 +359,8 @@ namespace dotBattlelog
                         break;
                     case "MatchmakeSuccessful":
                         var headerMatchmake = ParseJson<Header<Matchmake>>.ReadObject(e.Message);
+                        if (headerMatchmake == null)
+                            break;
                         var matchmake = headerMatchmake.data.data;
                         if (matchmake == null)
                             break;
@@ -362,6 +372,8 @@ namespace dotBattlelog
                         break;
                     case "NotificationEventUserStartedPlaying":
                         var headerPlayStart = ParseJson<Header<User>>.ReadObject(e.Message);
+                        if (headerPlayStart == null)
+                            break;
                         var user = headerPlayStart.data.data;
                         if (user == null)
                             break;
