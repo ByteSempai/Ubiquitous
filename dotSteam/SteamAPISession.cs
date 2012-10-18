@@ -750,6 +750,8 @@ namespace dotSteam
                 try
                 {
                     Stream requestStream = request.GetRequestStream();
+                    if (postBytes.Length == 0)
+                        throw new Exception("Request body is null");
                     requestStream.Write(postBytes, 0, postBytes.Length);
                     requestStream.Close();
                 }
